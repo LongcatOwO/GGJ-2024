@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
+    //This class handles the movement of its host.
+
     [SerializeField] private float moveSpeed;
 
     private float forwardMovement;

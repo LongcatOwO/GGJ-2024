@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 [DefaultExecutionOrder(-1)]
 public class PlayerInputHandler : MonoBehaviour
 {
+    //This class invokes input events.
+
     public event Action<Vector2> OnMoveInput;
     public event Action OnAttackInputDown;
     public event Action OnAttackInputUp;

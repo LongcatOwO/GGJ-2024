@@ -5,6 +5,7 @@ using UnityEngine;
 public enum BillBoardRotationAxis { All, Horizontal, Vertical }
 public class BillboardToCamera : MonoBehaviour
 {
+    //This class billboards its host using the specified rotation behvaiour to the camera.
     [SerializeField] private BillBoardRotationAxis axis;
 
     private Camera activeCamera;    

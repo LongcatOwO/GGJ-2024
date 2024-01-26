@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraFocusPosition : MonoBehaviour
 {
+    //This class serves to position the game object it is on in the middle of the two provided transforms to serve as a "Look At" point for the camera.
+
     [SerializeField] private Transform transformOne;
     [SerializeField] private Transform transformTwo;
 
