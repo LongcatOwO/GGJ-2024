@@ -292,8 +292,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155696859}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000010258179, y: 0.80502367, z: 0.000000013920232, w: 0.59324276}
-  m_LocalPosition: {x: -9.870474, y: 1.2499996, z: 1.9323887}
+  m_LocalRotation: {x: -0.027502643, y: 0.76918286, z: 0.03317978, w: 0.63757396}
+  m_LocalPosition: {x: -9.996432, y: 0.37068066, z: 0.7457163}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -361,7 +361,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 22.833382
+  field of view: 18.677395
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -387,8 +387,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000010258179, y: 0.80502367, z: 0.000000013920232, w: 0.59324276}
-  m_LocalPosition: {x: -9.870474, y: 1.2499996, z: 1.9323887}
+  m_LocalRotation: {x: -0.027502643, y: 0.76918286, z: 0.03317978, w: 0.63757396}
+  m_LocalPosition: {x: -9.996432, y: 0.37068066, z: 0.7457163}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1715,6 +1715,21 @@ PrefabInstance:
     - target: {fileID: 5635255469448625580, guid: 08b4890cf47c41041b3e4f17a6b38b8c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570939156731612349, guid: 08b4890cf47c41041b3e4f17a6b38b8c,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570939156731612349, guid: 08b4890cf47c41041b3e4f17a6b38b8c,
+        type: 3}
+      propertyPath: inertiaFactor
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570939156731612349, guid: 08b4890cf47c41041b3e4f17a6b38b8c,
+        type: 3}
+      propertyPath: isUsingInertia
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
