@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(GroundingChecker))]
 public class GravityEffector : MonoBehaviour
 {
+    //This class resolves gravity (and the resulting fall).
+
     private GroundingChecker groundingChecker;
     private Vector3 fallVelocity;
     private bool isFalling;

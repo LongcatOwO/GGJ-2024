@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackExecutor : MonoBehaviour
+public class SlamAttackExecutor : MonoBehaviour
 {
+    //This class handlers the attack animation of melee "slammable" weapons.
+
     public event Action<float> OnSlamMagnitudeExecuted;
     public event Action OnSlamEnded;
 

@@ -5,16 +5,12 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
+    //This class handles the movement of its host.
 
-    [SerializeField] private float inertiaFactor;
-    [SerializeField] private bool isUsingInertia;
+    [SerializeField] private float moveSpeed;
 
     private float forwardMovement;
     private float sideMovement;
-
-    private float currentSideSpeed;
-    private float currentForwardSpeed;
 
     private void OnEnable()
     {
@@ -28,41 +24,14 @@ public class Mover : MonoBehaviour
 
     private void Update()
     {
-        //Normal movt
-        if (!isUsingInertia)
+        if (forwardMovement != 0)
         {
-            if (forwardMovement != 0)
-            {
-                transform.position += Mathf.Sign(forwardMovement) * moveSpeed * Time.deltaTime * -transform.forward;
-            }
-
-            if (sideMovement != 0)
-            {
-                transform.position += Mathf.Sign(sideMovement) * moveSpeed * Time.deltaTime * transform.right;
-            }
+            transform.position += Mathf.Sign(forwardMovement) * moveSpeed * Time.deltaTime * transform.right;
         }
-        //Inertia movt (ice physics)
-        else
-        {
-            if (forwardMovement != 0)
-            {
-                currentForwardSpeed = Mathf.Lerp(currentForwardSpeed, Mathf.Sign(forwardMovement) * moveSpeed, inertiaFactor * Time.deltaTime);
-            }
-            else
-            {
-                currentForwardSpeed = Mathf.Lerp(currentForwardSpeed, 0, inertiaFactor * Time.deltaTime);
-            }
 
-            if (sideMovement != 0)
-            {
-                currentSideSpeed = Mathf.Lerp(currentSideSpeed, Mathf.Sign(sideMovement) * moveSpeed, inertiaFactor * Time.deltaTime);
-            }
-            else
-            {
-                currentSideSpeed = Mathf.Lerp(currentSideSpeed, 0, inertiaFactor * Time.deltaTime);
-            }
-            transform.position += currentForwardSpeed * Time.deltaTime * -transform.forward;
-            transform.position += currentSideSpeed * Time.deltaTime * transform.right;
+        if(sideMovement != 0)
+        {
+            transform.position += Mathf.Sign(sideMovement) * moveSpeed * Time.deltaTime * transform.forward;
         }
     }
 
