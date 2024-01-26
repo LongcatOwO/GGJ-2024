@@ -7,7 +7,7 @@ using UnityEngine;
 public class GravityEffector : MonoBehaviour
 {
     private GroundingChecker groundingChecker;
-    [SerializeField] private Vector3 fallVelocity;
+    private Vector3 fallVelocity;
     private bool isFalling;
 
     private void Awake()
