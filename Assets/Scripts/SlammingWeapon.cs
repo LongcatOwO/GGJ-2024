@@ -45,6 +45,13 @@ public class SlammingWeapon : MonoBehaviour
         }
     }
 
+    public void InitializeWeapon(GameObject hostGameObject)
+    {
+        hostCollider = hostGameObject.GetComponent<Collider>();
+
+        attackExecutor = hostGameObject.GetComponentInChildren<AttackExecutor>();
+    }
+
     public void InitializeAttack(float slamMagnitude)
     {
         this.slamMagnitude = slamMagnitude;
