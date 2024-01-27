@@ -22,6 +22,11 @@ public class PlayerInputHandler : MonoBehaviour, IPlayerInputHandler
         SubscribePlayerInputEvents();
     }
 
+    private void OnDestroy()
+    {
+        UnsubscribePlayerInputEvents();
+    }
+
     private void OnEnable()
     {
         playerInputAsset.General.Enable();
@@ -43,6 +48,19 @@ public class PlayerInputHandler : MonoBehaviour, IPlayerInputHandler
         playerInputAsset.General.Attack.canceled += ResolveAttackInputCancelled;
 
         playerInputAsset.General.Pickup.performed += ResolvePickup;
+    }
+
+    private void UnsubscribePlayerInputEvents()
+    {
+        playerInputAsset.General.Move.performed -= ResolveMoveDown;
+
+        playerInputAsset.General.Move.canceled -= ResolveMoveInputUp;
+
+        playerInputAsset.General.Attack.started -= ResolveAttackInput;
+
+        playerInputAsset.General.Attack.canceled -= ResolveAttackInputCancelled;
+
+        playerInputAsset.General.Pickup.performed -= ResolvePickup;
     }
 
     private void ResolveAttackInputCancelled(InputAction.CallbackContext context)
