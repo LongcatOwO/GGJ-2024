@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class SlammingWeapon : MonoBehaviour
+public class SlammingWeapon : BaseWeaponScript
 {
     //This class handles the activation of the "slamming weapon" as well as its hit effects.
 
-    [field: SerializeField] public WeaponInfo Info { get; private set; }
+    //[field: SerializeField] public WeaponInfo Info { get; private set; }
 
-    [Header("Component References")]
-    [SerializeField] private SlamAttackExecutor attackExecutor;
-    [SerializeField] private Collider hostCollider;
-    [SerializeField] private Collider weaponCollider;
+    //[Header("Component References")]
+    //[SerializeField] private SlamAttackExecutor attackExecutor;
+    //[SerializeField] private Collider hostCollider;
+    //[SerializeField] private Collider weaponCollider;
 
-    [Header("Hit Properties")]
-    [SerializeField] private float slamMagnitude;
+    //[Header("Hit Properties")]
+    //[SerializeField] private float slamMagnitude;
 
-    private GameObject hitTargetGameObject;
+    //private GameObject hitTargetGameObject;
 
     private void Start()
     {
@@ -92,5 +92,9 @@ public class SlammingWeapon : MonoBehaviour
         weaponCollider.enabled = false;
 
         hitTargetGameObject = null;
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        Debug.LogError("This should happen");
     }
 }

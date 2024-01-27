@@ -5,14 +5,15 @@ using UnityEngine;
 public class BaseWeaponScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [field: SerializeField] public WeaponInfo Info { get; private set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("Component References")]
+    [SerializeField] protected SlamAttackExecutor attackExecutor;
+    [SerializeField] protected Collider hostCollider;
+    [SerializeField] protected Collider weaponCollider;
+    [Header("Hit Properties")]
+    [SerializeField] protected float slamMagnitude;
+
+    protected GameObject hitTargetGameObject;
+
 }
