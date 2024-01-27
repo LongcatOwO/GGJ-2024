@@ -58,10 +58,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2461442546543558992, guid: 3f3b4d7743e0bbcf58176bfb0ee73407,
+        type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: 48e531314f36d15f3b830838305f3de5,
+        type: 2}
     - target: {fileID: 2666506751802486867, guid: 3f3b4d7743e0bbcf58176bfb0ee73407,
         type: 3}
       propertyPath: m_Name
-      value: WeaponHeld
+      value: Gemini
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
