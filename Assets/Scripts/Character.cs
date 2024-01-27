@@ -12,6 +12,9 @@ public class Character : MonoBehaviour
     [SerializeField] private SlamAttackExecutor slamAttackExecutor;
     [SerializeField] private Transform weaponSlot;
 
+    [Header("Player Propertiers")]
+    [SerializeField] public bool isSecondaryPlayer;
+
     private SlammingWeapon wieldedMeleeWeapon;
 
     private void OnEnable()
@@ -22,7 +25,7 @@ public class Character : MonoBehaviour
 
         slamAttackExecutor.OnSlamCancelled += UnlockMovement;
     }
-    
+
     private void OnDisable()
     {
         slamAttackExecutor.OnSlamInitiated -= LockMovement;
@@ -55,5 +58,10 @@ public class Character : MonoBehaviour
     public void UnlockMovement()
     {
         mover.SetMovementLock(false);
+    }
+
+    public SlamAttackExecutor GetSlamAttackExecutor()
+    {
+        return slamAttackExecutor;
     }
 }

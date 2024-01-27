@@ -6,6 +6,7 @@ public class CameraFocusPosition : MonoBehaviour
 {
     //This class serves to position the game object it is on in the middle of the two provided transforms to serve as a "Look At" point for the camera.
 
+    [Header("Target Transforms")]
     [SerializeField] private Transform transformOne;
     [SerializeField] private Transform transformTwo;
 
@@ -20,7 +21,7 @@ public class CameraFocusPosition : MonoBehaviour
 
         transform.position = newPosition;
 
-        Vector3 perpendicularVector = Vector3.Cross(newPosition, Vector3.up);
+        Vector3 perpendicularVector = Vector3.Cross(transformOne.position - transformTwo.position, Vector3.up);
 
         transform.rotation = Quaternion.LookRotation(perpendicularVector);
     }
