@@ -22,6 +22,23 @@ public class CameraFocusPosition : MonoBehaviour
 
         Vector3 perpendicularVector = Vector3.Cross(newPosition, Vector3.up);
 
+      //  Debug.Log(perpendicularVector);
+
         transform.rotation = Quaternion.LookRotation(perpendicularVector);
     }
+
+    //private void OnDrawGizmos()
+    //{
+    //    Vector3 newPosition = (transformOne.position + transformTwo.position) / 2;
+
+    //    Gizmos.color = Color.red;
+
+    //    Gizmos.DrawSphere(newPosition, 0.1f);
+
+    //    Vector3 perpendicularVector = Vector3.Cross(newPosition, Vector3.up);
+
+    //    Gizmos.color = Color.green;
+
+    //    Gizmos.DrawSphere(newPosition + perpendicularVector, 0.1f);
+    //}
 }
