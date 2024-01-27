@@ -37,10 +37,10 @@ public class MainMenuScreenAnimator : MonoBehaviour
         } 
         else
         {
-            if (_currentFrameIndex > 0)
-            {
-                Debug.Log("Stopped at frame " + _currentFrameIndex);
-            }
+            //if (_currentFrameIndex > 0)
+            //{
+            //    Debug.Log("Stopped at frame " + _currentFrameIndex);
+            //}
             _heldTime = 0;
             UpdateLoadValue(_heldTime);
         }
