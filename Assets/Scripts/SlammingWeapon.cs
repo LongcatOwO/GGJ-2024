@@ -19,7 +19,7 @@ public class SlammingWeapon : BaseWeaponScript
 
     //private GameObject hitTargetGameObject;
 
-    private void Start()
+    private void WeaponStart()
     {
         weaponCollider = GetComponent<Collider>();
 
@@ -28,47 +28,19 @@ public class SlammingWeapon : BaseWeaponScript
         weaponCollider.enabled = false;
     }
 
-    //Registers the events that will invoke the methods of this weapon.
-    private void OnEnable()
-    {
-        SubscribeAttackExecutorEvents();
-    }
-    
-    //Unregisters the events that will invoke the methods of this weapon.
-    private void OnDisable()
-    {
-        UnsubscribeAttackExecutorEvents();
-    }
+
 
     //If a viable target enters the weapon's collider, trigger the hit effect.
-    private void OnTriggerEnter(Collider other)
+    override protected void OnWeaponHit(Collider other)
     {
-        if (other.GetComponent<Character>() != null || other.GetComponent<SlammableTarget>() != null)
-        {
-            if(hitTargetGameObject == other.gameObject)
-            {
-                return;
-            }
-
+        
             hitTargetGameObject = other.gameObject;
 
             hitTargetGameObject.transform.position += Vector3.down * slamMagnitude;
-        }
+        
     }
 
-    private void SubscribeAttackExecutorEvents()
-    {
-        if (attackExecutor == null) return;
-        attackExecutor.OnSlamMagnitudeExecuted += InitializeAttack;
-        attackExecutor.OnSlamEnded += EndAttack;
-    }
 
-    private void UnsubscribeAttackExecutorEvents()
-    {
-        if (attackExecutor == null) return;
-        attackExecutor.OnSlamMagnitudeExecuted -= InitializeAttack;
-        attackExecutor.OnSlamEnded -= EndAttack;
-    }
 
     //Initializes the weapon's component references.
     public void InitializeWeapon(GameObject hostGameObject)
@@ -79,7 +51,7 @@ public class SlammingWeapon : BaseWeaponScript
     }
 
     //Readies the weapon for attack. Enables the weapon's collider to allow "OnTriggerEnter()" calls.
-    public void InitializeAttack(float slamMagnitude)
+    override protected void InitializeAttack(float slamMagnitude)
     {
         this.slamMagnitude = slamMagnitude;
 
@@ -87,7 +59,7 @@ public class SlammingWeapon : BaseWeaponScript
     }
 
     //Disables the weapon's attack functionality by disabling the weapon's collider.
-    public void EndAttack()
+    override protected void EndAttack()
     {
         weaponCollider.enabled = false;
 

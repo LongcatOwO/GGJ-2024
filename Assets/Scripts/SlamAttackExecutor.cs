@@ -24,7 +24,7 @@ public class SlamAttackExecutor : BaseAttackExcuter
         OnSlamEnded?.Invoke();        
     }
 
-    public void SlamWeapon()
+    override public void SlamWeapon()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Character_RaiseWeapon"))
         {

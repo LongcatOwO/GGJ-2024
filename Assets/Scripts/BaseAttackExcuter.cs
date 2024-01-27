@@ -38,7 +38,7 @@ public class BaseAttackExcuter : MonoBehaviour
     { 
     
     }
-    virtual protected void SlamWeapon()
+    virtual public void SlamWeapon()
     {
         
     }
