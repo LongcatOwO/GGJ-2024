@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlamAttackExecutor : MonoBehaviour
+public class SlamAttackExecutor : BaseAttackExcuter
 {
     //This class handlers the attack animation of melee "slammable" weapons.
 
@@ -12,21 +12,21 @@ public class SlamAttackExecutor : MonoBehaviour
     public event Action OnSlamEnded;
     public event Action OnSlamCancelled;
 
-    [SerializeField] private Animator animator;
-    [SerializeField] private SlammingWeapon weapon;
-    [SerializeField] private float minimumRequiredSlamProgress;
-    [SerializeField] private float slamMagnitudeMultiplier;
+    //[SerializeField] private Animator animator;
+    //[SerializeField] private SlammingWeapon weapon;
+    //[SerializeField] private float minimumRequiredSlamProgress;
+    //[SerializeField] private float slamMagnitudeMultiplier;
 
     private void OnEnable()
     {
-        PlayerInputHandler.Instance.OnAttackInputDown += RaiseWeapon;
+        PlayerInputHandler.Instance.OnAttackInputDown += ChargeWeapon;
 
         PlayerInputHandler.Instance.OnAttackInputUp += SlamWeapon;
     }
     
     private void OnDisable()
     {
-        PlayerInputHandler.Instance.OnAttackInputDown -= RaiseWeapon;
+        PlayerInputHandler.Instance.OnAttackInputDown -= ChargeWeapon;
 
         PlayerInputHandler.Instance.OnAttackInputUp -= SlamWeapon;
     }
@@ -38,7 +38,7 @@ public class SlamAttackExecutor : MonoBehaviour
         OnSlamEnded?.Invoke();        
     }
 
-    private void SlamWeapon()
+    override protected void SlamWeapon()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Character_RaiseWeapon"))
         {
@@ -65,7 +65,7 @@ public class SlamAttackExecutor : MonoBehaviour
         }
     }
 
-    private void RaiseWeapon()
+    override protected void ChargeWeapon()
     {
         if (!animator.GetBool("isSlammingWeapon"))
         {
