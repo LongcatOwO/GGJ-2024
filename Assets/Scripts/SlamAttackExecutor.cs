@@ -17,20 +17,6 @@ public class SlamAttackExecutor : BaseAttackExcuter
     //[SerializeField] private float minimumRequiredSlamProgress;
     //[SerializeField] private float slamMagnitudeMultiplier;
 
-    private void OnEnable()
-    {
-        PlayerInputHandler.Instance.OnAttackInputDown += ChargeWeapon;
-
-        PlayerInputHandler.Instance.OnAttackInputUp += SlamWeapon;
-    }
-    
-    private void OnDisable()
-    {
-        PlayerInputHandler.Instance.OnAttackInputDown -= ChargeWeapon;
-
-        PlayerInputHandler.Instance.OnAttackInputUp -= SlamWeapon;
-    }
-
     public void EndWeaponSlam()
     {
         animator.SetBool("isSlammingWeapon", false);
@@ -38,7 +24,7 @@ public class SlamAttackExecutor : BaseAttackExcuter
         OnSlamEnded?.Invoke();        
     }
 
-    override protected void SlamWeapon()
+    public void SlamWeapon()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Character_RaiseWeapon"))
         {
@@ -65,7 +51,7 @@ public class SlamAttackExecutor : BaseAttackExcuter
         }
     }
 
-    override protected void ChargeWeapon()
+    public void RaiseWeapon()
     {
         if (!animator.GetBool("isSlammingWeapon"))
         {
