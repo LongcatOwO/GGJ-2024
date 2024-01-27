@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class WeaponPicker : MonoBehaviour
+[RequireComponent(typeof(PlayerInputHandler))]
+public class WeaponFinder : MonoBehaviour
 {
+    PlayerInputHandler _inputHandler;
     SlammingWeapon _weaponInRange;
 
-    public SlammingWeapon GetWeaponInRange()
+    void Awake()
+    {
+        _inputHandler = GetComponent<PlayerInputHandler>();
+    }
+
+    SlammingWeapon GetWeaponInRange()
     {
         return _weaponInRange;
     }
