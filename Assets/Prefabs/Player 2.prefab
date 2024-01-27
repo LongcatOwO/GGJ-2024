@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 3612591105728691180}
   - component: {fileID: 3562017885543192606}
   m_Layer: 7
-  m_Name: Player
+  m_Name: Player 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 1
-  inverseFacingDirection: 0
+  inverseFacingDirection: 1
 --- !u!114 &7512806243160602025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d29f4e0a4ad990e3a1a61d7dbfac943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSecondaryPlayer: 0
+  isSecondaryPlayer: 1
 --- !u!1 &3782005908977950779
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 0
-  inverseFacingDirection: 0
+  inverseFacingDirection: 1
 --- !u!1 &6189207283038588926
 GameObject:
   m_ObjectHideFlags: 0

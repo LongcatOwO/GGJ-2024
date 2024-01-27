@@ -9,7 +9,10 @@ public class SeaOfHappiness : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GameObject scoreObject = GameObject.Find("ScoreObj");
-
+        if (other == null)
+        {
+            return;
+        }
         //player 1 scores
         if (other.gameObject.GetComponent<PlayerController>().IsSecondaryPlayer)
         {
