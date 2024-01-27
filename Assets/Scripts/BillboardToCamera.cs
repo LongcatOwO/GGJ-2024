@@ -44,7 +44,10 @@ public class BillboardToCamera : MonoBehaviour
                 {
                     if (inverseFacingDirection)
                     {
-                        billboardRotation = Quaternion.Euler(-activeCamera.transform.rotation.eulerAngles);
+                        billboardRotation = Quaternion.Euler(
+                            new Vector3(activeCamera.transform.rotation.eulerAngles.x + 180,
+                            activeCamera.transform.rotation.eulerAngles.y + 180,
+                            activeCamera.transform.rotation.eulerAngles.z + 180));
                     }
                     else
                     {
