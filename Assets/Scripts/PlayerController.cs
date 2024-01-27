@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Character))]
-[RequireComponent(typeof(PlayerInputHandler))]
+[RequireComponent(typeof(IPlayerInputHandler))]
 [RequireComponent(typeof(Mover))]
 [RequireComponent(typeof(WeaponPicker))]
 public class PlayerController : MonoBehaviour
 {
     Character _character;
-    PlayerInputHandler _inputHandler;
+    IPlayerInputHandler _inputHandler;
     Mover _mover;
     WeaponPicker _weaponPicker;
 
     void Awake()
     {
         _character = GetComponent<Character>();
-        _inputHandler = GetComponent<PlayerInputHandler>();
+        _inputHandler = GetComponent<IPlayerInputHandler>();
         _mover = GetComponent<Mover>();
         _weaponPicker = GetComponent<WeaponPicker>();
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [DefaultExecutionOrder(-2)]
-public class PlayerInputHandler : MonoBehaviour
+public class PlayerInputHandler : MonoBehaviour, IPlayerInputHandler
 {
     //This class invokes input events.
 
@@ -14,44 +14,22 @@ public class PlayerInputHandler : MonoBehaviour
     public event Action OnAttackInputUp;
     public event Action OnPickupInput;
 
-    public PlayerControls PlayerInputAsset { get { return playerInputAsset; } }
-
-    public static PlayerInputHandler Instance;    
-
     private PlayerControls playerInputAsset;    
 
     private void Awake()
     {
-        if(Instance != null)
-        {
-            Destroy(this);
-        }
-
-        Instance = this;
-
-        if (playerInputAsset == null)
-        {
-            playerInputAsset = new PlayerControls();
-            SubscribePlayerInputEvents();
-        }
-
-        playerInputAsset.Enable();
+        playerInputAsset = new PlayerControls();
+        SubscribePlayerInputEvents();
     }
 
     private void OnEnable()
     {
-        if(playerInputAsset == null)
-        {
-            playerInputAsset = new PlayerControls();
-            SubscribePlayerInputEvents();
-        }
-
-        playerInputAsset.Enable();
+        playerInputAsset.General.Enable();
     }
 
     private void OnDisable()
     {
-        playerInputAsset?.Disable();
+        playerInputAsset.General.Disable();
     }
 
     private void SubscribePlayerInputEvents()
