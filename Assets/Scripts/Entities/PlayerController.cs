@@ -11,14 +11,14 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private bool isSecondaryPlayer;
 
-    private SlamAttackExecuter slamAttacker;
+    private AttackAnimationEvents slamAttacker;
     private Mover _mover;
     private WeaponPicker _weaponPicker;
     
     
     void Awake()
     {
-        slamAttacker = GetComponentInChildren<SlamAttackExecuter>();
+        slamAttacker = GetComponentInChildren<AttackAnimationEvents>();
 
         _mover = GetComponent<Mover>();
 
@@ -33,9 +33,9 @@ public class PlayerController : MonoBehaviour
 
             PlayerInputHandler.Instance.OnPickupInput += _weaponPicker.Pickup;
 
-            PlayerInputHandler.Instance.OnAttackInputDown += slamAttacker.RaiseWeapon;
+            PlayerInputHandler.Instance.OnAttackInputDown += slamAttacker.StartWeaponCharge;
 
-            PlayerInputHandler.Instance.OnAttackInputUp += slamAttacker.SlamWeapon;
+            PlayerInputHandler.Instance.OnAttackInputUp += slamAttacker.ChargeWeapon;
         }
         else
         {
@@ -43,9 +43,9 @@ public class PlayerController : MonoBehaviour
 
             PlayerInputHandler.Instance.OnPlayerTwoPickupInput += _weaponPicker.Pickup;
 
-            PlayerInputHandler.Instance.OnPlayerTwoAttackInputDown += slamAttacker.RaiseWeapon;
+            PlayerInputHandler.Instance.OnPlayerTwoAttackInputDown += slamAttacker.StartWeaponCharge;
 
-            PlayerInputHandler.Instance.OnPlayerTwoAttackInputUp += slamAttacker.SlamWeapon;
+            PlayerInputHandler.Instance.OnPlayerTwoAttackInputUp += slamAttacker.ChargeWeapon;
         }
     }
 
@@ -57,9 +57,9 @@ public class PlayerController : MonoBehaviour
 
             PlayerInputHandler.Instance.OnPickupInput -= _weaponPicker.Pickup;
 
-            PlayerInputHandler.Instance.OnAttackInputDown -= slamAttacker.RaiseWeapon;
+            PlayerInputHandler.Instance.OnAttackInputDown -= slamAttacker.StartWeaponCharge;
 
-            PlayerInputHandler.Instance.OnAttackInputUp -= slamAttacker.SlamWeapon;
+            PlayerInputHandler.Instance.OnAttackInputUp -= slamAttacker.ChargeWeapon;
         }
         else
         {
@@ -67,9 +67,9 @@ public class PlayerController : MonoBehaviour
 
             PlayerInputHandler.Instance.OnPlayerTwoPickupInput -= _weaponPicker.Pickup;
 
-            PlayerInputHandler.Instance.OnPlayerTwoAttackInputDown -= slamAttacker.RaiseWeapon;
+            PlayerInputHandler.Instance.OnPlayerTwoAttackInputDown -= slamAttacker.StartWeaponCharge;
 
-            PlayerInputHandler.Instance.OnPlayerTwoAttackInputUp -= slamAttacker.SlamWeapon;
+            PlayerInputHandler.Instance.OnPlayerTwoAttackInputUp -= slamAttacker.ChargeWeapon;
         }
     }
 }
