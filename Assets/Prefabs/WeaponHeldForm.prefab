@@ -67,12 +67,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc48f4a3e9793a44aa4e43e2e16eda64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Info>k__BackingField: {fileID: 11400000, guid: f25e4499df54e371f90da61fa90ee47d,
-    type: 2}
-  attackExecutor: {fileID: 0}
+  info: {fileID: 0}
+  attackEvents: {fileID: 0}
   hostCollider: {fileID: 0}
   weaponCollider: {fileID: 9121709422857925262}
-  slamMagnitude: 0
+  buryPotential: 0
 --- !u!1 &2938354450905353242
 GameObject:
   m_ObjectHideFlags: 0
