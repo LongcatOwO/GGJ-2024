@@ -413,6 +413,7 @@ GameObject:
   - component: {fileID: 974458889}
   - component: {fileID: 974458892}
   - component: {fileID: 974458893}
+  - component: {fileID: 974458894}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -580,6 +581,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &974458894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974458887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: befcfd3205441f947b6a6b447b9aaf86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enablePlayerTwoInput: 0
 --- !u!1 &978903576
 GameObject:
   m_ObjectHideFlags: 0
