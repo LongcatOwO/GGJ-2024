@@ -67,6 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc48f4a3e9793a44aa4e43e2e16eda64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Info>k__BackingField: {fileID: 11400000, guid: f25e4499df54e371f90da61fa90ee47d,
+    type: 2}
   attackExecutor: {fileID: 0}
   hostCollider: {fileID: 0}
   weaponCollider: {fileID: 9121709422857925262}
@@ -97,7 +99,7 @@ Transform:
   m_GameObject: {fileID: 2938354450905353242}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.344, y: 0, z: 0}
   m_LocalScale: {x: 0.3201411, y: 0.3201411, z: 0.3201411}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -144,7 +146,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b655e595ffa4e1de2b4e81e6a3dfa96b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e234581fc1b13f8feb7b38caf64711c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
