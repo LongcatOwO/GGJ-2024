@@ -23,13 +23,14 @@ public class SeaOfHappiness : MonoBehaviour
             {
                 scoreComponent.Player2Score++;
             }
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+            return;
         }
 
         Destroy(other.gameObject);
 
         //insert UI stuff (Game Over screen here)
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        
     }
 }
