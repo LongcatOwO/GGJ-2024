@@ -10,16 +10,20 @@ public class SeaOfHappiness : MonoBehaviour
     {
         GameObject scoreObject = GameObject.Find("ScoreObj");
 
-        //player 1 scores
-        if (other.gameObject.GetComponent<PlayerController>().IsSecondaryPlayer)
+        if(other.gameObject.TryGetComponent(out PlayerController playerController))
         {
-            scoreObject.GetComponent<Score>().Player1Score++;
+            //player 1 scores
+            if (playerController.IsSecondaryPlayer)
+            {
+                scoreObject.GetComponent<Score>().Player1Score++;
+            }
+            //player 2 scores
+            else
+            {
+                scoreObject.GetComponent<Score>().Player2Score++;
+            }
+        }
 
-        }
-        else //player 2 scores
-        {
-            scoreObject.GetComponent<Score>().Player2Score++;
-        }
         Destroy(other.gameObject);
 
         //insert UI stuff (Game Over screen here)

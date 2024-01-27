@@ -24,17 +24,17 @@ public class AttackAnimationEvents : MonoBehaviour
         OnAttackEnded?.Invoke();
     }
 
-    public void ChargeWeapon()
+    public void ExecuteWeaponAttack()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("StartWeaponCharging"))
         {
-            float slamProgress = Mathf.Clamp01(1 - animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+            float chargeProgress = Mathf.Clamp01(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
 
-            animator.Play("EndWeaponCharging", 0, slamProgress);
+            animator.Play("EndWeaponCharging", 0, 1 - chargeProgress);
 
-            if (Mathf.Abs(slamProgress - 1) >= minimumRequiredAttackChargeProgress)
+            if (chargeProgress >= minimumRequiredAttackChargeProgress)
             {
-                OnAttackExecuted?.Invoke((1 - slamProgress) * chargeEffectMultiplier);
+                OnAttackExecuted?.Invoke(chargeProgress * chargeEffectMultiplier);
             }
             else
             {
