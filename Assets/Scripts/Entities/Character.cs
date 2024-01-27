@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
     [SerializeField] private Mover mover;
     [SerializeField] private AttackAnimationEvents attackEvents;
     [SerializeField] private Transform weaponSlot;
+    [SerializeField] private Animator animator;
 
     private SlammableWeapon wieldedMeleeWeapon;
     private new Rigidbody rigidbody;
@@ -46,8 +47,7 @@ public class Character : MonoBehaviour
     {
         if(wieldedMeleeWeapon != null)
         {
-            Instantiate(weapon.Info.DroppedForm, transform.position, Quaternion.identity);
-
+            Instantiate(weapon.Info.PickupForm, transform.position, Quaternion.identity);
             Destroy(wieldedMeleeWeapon);
         }
 
@@ -56,6 +56,8 @@ public class Character : MonoBehaviour
         wieldedMeleeWeapon.InitializeWeapon(gameObject);        
 
         wieldedMeleeWeapon.transform.SetParent(weaponSlot, false);
+
+        animator.runtimeAnimatorController = weapon.Info.AnimatorController;
     }
 
     public void LockMovement()

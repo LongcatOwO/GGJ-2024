@@ -220,6 +220,7 @@ MonoBehaviour:
   mover: {fileID: 8570939156731612349}
   attackEvents: {fileID: 8895455194037387657}
   weaponSlot: {fileID: 5515463556031074646}
+  animator: {fileID: 7859859237943480916}
 --- !u!114 &3612591105728691180
 MonoBehaviour:
   m_ObjectHideFlags: 0

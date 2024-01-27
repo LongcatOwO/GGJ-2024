@@ -9,5 +9,8 @@ public class WeaponInfo : ScriptableObject
     public GameObject HeldForm { get; private set; }
 
     [field: SerializeField]
-    public GameObject DroppedForm { get; private set; }
+    public GameObject PickupForm { get; private set; }
+
+    [field: SerializeField]
+    public RuntimeAnimatorController AnimatorController { get; private set; }
 }
