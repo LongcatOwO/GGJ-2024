@@ -355,7 +355,7 @@ Transform:
   m_GameObject: {fileID: 6189207283038588926}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -390,7 +390,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4640745907412931492}
@@ -436,8 +436,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 34554ce7b27903847b7ffff86564f577, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -456,6 +455,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5515463556031074646}
     m_Modifications:
+    - target: {fileID: -8295599560999293202, guid: 0b76d1616ba42e745a201c8290dd111f,
+        type: 3}
+      propertyPath: attackEvents
+      value: 
+      objectReference: {fileID: 8895455194037387657}
+    - target: {fileID: -8295599560999293202, guid: 0b76d1616ba42e745a201c8290dd111f,
+        type: 3}
+      propertyPath: hostCollider
+      value: 
+      objectReference: {fileID: 7687244271958224670}
     - target: {fileID: 3029411782153627300, guid: 0b76d1616ba42e745a201c8290dd111f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -590,6 +599,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9005163486864164957, guid: 08a8b35adef7b7342b259dd81d3a714d,
+        type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: f25e4499df54e371f90da61fa90ee47d,
+        type: 2}
     - target: {fileID: 9005163486864164957, guid: 08a8b35adef7b7342b259dd81d3a714d,
         type: 3}
       propertyPath: attackEvents

@@ -25,6 +25,8 @@ public class AttackAnimationEvents : MonoBehaviour
 
     public void ExecuteWeaponAttack()
     {
+        Debug.Log("Excute Weapon");
+
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("StartWeaponCharging"))
         {
             float chargeProgress = Mathf.Clamp01(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
@@ -52,6 +54,7 @@ public class AttackAnimationEvents : MonoBehaviour
 
     public void StartWeaponCharge()
     {
+        Debug.Log("Start Weapon Charge");
         if (!animator.GetBool("isChargingWeapon"))
         {
             animator.SetBool("isChargingWeapon", true);

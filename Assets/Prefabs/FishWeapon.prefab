@@ -121,6 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info: {fileID: 11400000, guid: d80873adaef6df149b169c6013df1fb9, type: 2}
   attackEvents: {fileID: 0}
-  hostCollider: {fileID: 0}
+  hostCollider: {fileID: 7687244271958224670, guid: 08b4890cf47c41041b3e4f17a6b38b8c,
+    type: 3}
   weaponCollider: {fileID: -2794305602618322750}
   buryPotential: 0

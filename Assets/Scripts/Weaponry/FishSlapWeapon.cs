@@ -35,29 +35,42 @@ public class FishSlapWeapon : MonoBehaviour
     //Registers the events that will invoke the methods of this weapon.
     private void OnEnable()
     {
+        Debug.Log("Enabled, Subscribe");
         SubscribeAttackExecutorEvents();
     }
     
     //Unregisters the events that will invoke the methods of this weapon.
     private void OnDisable()
     {
+        Debug.Log("Enabled, unSubscribe");
+
         UnsubscribeAttackExecutorEvents();
     }
 
     //If a viable target enters the weapon's collider, trigger the hit effect.
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("On trigger");
         if (other.GetComponent<Character>() != null || other.GetComponent<SlammableTarget>() != null)
         {
             if(hitTargetGameObject == other.gameObject)
             {
+                Debug.Log("Taget the same didnt reset");
                 return;
             }
 
             hitTargetGameObject = other.gameObject;
 
-            hitTargetGameObject.transform.position += Vector3.right * slamForce * buryPotential;
+            hitTargetGameObject.transform.position += Vector3.forward * slamForce * buryPotential;
+            Debug.Log("Attack Successful ");
+
         }
+        else
+        {
+            Debug.Log("Attack unSuccessful ");
+
+        }
+
     }
 
     private void SubscribeAttackExecutorEvents()
@@ -67,6 +80,7 @@ public class FishSlapWeapon : MonoBehaviour
         attackEvents.OnAttackExecuted += InitializeAttack;
 
         attackEvents.OnAttackEnded += EndAttack;
+        Debug.Log("Successfully subscribed");
     }
 
     private void UnsubscribeAttackExecutorEvents()
@@ -86,6 +100,8 @@ public class FishSlapWeapon : MonoBehaviour
         attackEvents = hostGameObject.GetComponentInChildren<AttackAnimationEvents>();
 
         SubscribeAttackExecutorEvents();
+        Debug.Log("Initilize weapon");
+
     }
 
     //Readies the weapon for attack. Enables the weapon's collider to allow "OnTriggerEnter()" calls.
@@ -94,6 +110,8 @@ public class FishSlapWeapon : MonoBehaviour
         this.slamForce = slamForce;
 
         weaponCollider.enabled = true;
+        Debug.Log("Initilize Attack");
+
     }
 
     //Disables the weapon's attack functionality by disabling the weapon's collider.
@@ -102,5 +120,7 @@ public class FishSlapWeapon : MonoBehaviour
         weaponCollider.enabled = false;
 
         hitTargetGameObject = null;
+        Debug.Log("end Attack");
+
     }
 }
