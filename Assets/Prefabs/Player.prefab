@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6931321822238717030}
   - component: {fileID: 16590163138745203}
   - component: {fileID: 3678537598335113721}
+  - component: {fileID: 7512806243160602025}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -194,6 +195,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 1
+--- !u!114 &7512806243160602025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500451846505626296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f12b27d05fe2594cbc54a60ef5c24ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mover: {fileID: 8570939156731612349}
+  slamAttackExecutor: {fileID: 8895455194037387657}
 --- !u!1 &3782005908977950779
 GameObject:
   m_ObjectHideFlags: 0
