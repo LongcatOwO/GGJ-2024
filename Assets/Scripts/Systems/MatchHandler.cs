@@ -13,6 +13,19 @@ public class MatchHandler : MonoBehaviour
     [SerializeField] private Character combatantTwoPrefab;
     [SerializeField] private SlammableTarget slammableTargetPrefab;
 
+    [Header("Component References")]
+    [SerializeField] private CameraFocusPosition cameraFocuser;
+    [SerializeField] private GameObject tutorialScreenGameObject;
+    [SerializeField] private GameObject pVEScreenGameObject;
+    [SerializeField] private GameObject pVPScreenGameObject;
+    [SerializeField] private GameObject pVAIScreenGameObject;
+    [SerializeField] private GameObject aIVsAIScreenGameObject;
+    [SerializeField] private GameObject matchEndScreenGameObject;
+
+    [Header("Mode Properties")]
+    [Min(1)]
+    [SerializeField] private int targetsToSpawnInPVEMode;
+
     [Header("Spawn Properties")]
     [SerializeField] private Transform spawnCentreTransform;
     [SerializeField] private float spawnPositionHeight;
@@ -20,20 +33,8 @@ public class MatchHandler : MonoBehaviour
     [SerializeField] private Vector2 spawnDistanceDifferenceAllowedRange = new Vector2(1.5f, 5f);
     [SerializeField] private float maximumDistancingAttemptCount = 10f;
 
-    [Header("Camera Focus Properties")]
-    [SerializeField] private CameraFocusPosition cameraFocuser;
-
     private List<GameObject> activeGameObjects;
-
     private int remainingSlammableTargetCount;
-
-    [Header("Screen Displays")]
-    [SerializeField] private GameObject tutorialScreenGameObject;
-    [SerializeField] private GameObject pVEScreenGameObject;
-    [SerializeField] private GameObject pVPScreenGameObject;
-    [SerializeField] private GameObject pVAIScreenGameObject;
-    [SerializeField] private GameObject aIVsAIScreenGameObject;
-    [SerializeField] private GameObject matchEndScreenGameObject;
 
     private void Awake()
     {
@@ -45,9 +46,14 @@ public class MatchHandler : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        InitializeTutorial();
+        PlayerInputHandler.Instance.OnChangeTargetInput += FocusOnAnotherTarget;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInputHandler.Instance.OnChangeTargetInput -= FocusOnAnotherTarget;
     }
 
     public void InitializeTutorial()
@@ -56,11 +62,7 @@ public class MatchHandler : MonoBehaviour
 
         tutorialScreenGameObject.SetActive(true);
 
-        int numberOfTargets = 1;
-
-        activeGameObjects = InitializeCharacterWithTargets(playerPrefab, slammableTargetPrefab, numberOfTargets);
-
-        remainingSlammableTargetCount = numberOfTargets;
+        activeGameObjects = InitializeCharacterWithTargets(playerPrefab, slammableTargetPrefab, 1);
     }
 
     public void InitializePvE()
@@ -68,6 +70,8 @@ public class MatchHandler : MonoBehaviour
         matchEndScreenGameObject.SetActive(false);
 
         pVEScreenGameObject.SetActive(true);
+
+        activeGameObjects = InitializeCharacterWithTargets(playerPrefab, slammableTargetPrefab, targetsToSpawnInPVEMode);
     }
 
     public void InitializePvAi()
@@ -101,6 +105,8 @@ public class MatchHandler : MonoBehaviour
     {
         bool isMatchEnded = false;
 
+        activeGameObjects.Remove(destroyedTarget);
+
         if(destroyedTarget.GetComponent<Character>() != null)
         {
             isMatchEnded = true;
@@ -108,10 +114,25 @@ public class MatchHandler : MonoBehaviour
         else if(destroyedTarget.GetComponent<SlammableTarget>() != null)
         {
             remainingSlammableTargetCount--;
-
+            
             if(remainingSlammableTargetCount <= 0)
             {
                 isMatchEnded = true;
+            }
+            else
+            {
+                if(cameraFocuser.TransformTwo == destroyedTarget.transform)
+                {
+                    for(int i = 0; i < activeGameObjects.Count; i++)
+                    {
+                        if (activeGameObjects[i] != cameraFocuser.TransformOne.gameObject)
+                        {
+                            cameraFocuser.SetTransformTwo(activeGameObjects[i].transform);
+
+                            break;
+                        }
+                    }
+                }
             }
         }
 
@@ -221,7 +242,6 @@ public class MatchHandler : MonoBehaviour
 
         initializedGameObjectsList.Add(character.gameObject);
 
-        //WIP
         Vector2 secondRandomPointInCircleOfSpawnAreaRadius;
 
         int distancingAttempts = 0;
@@ -232,24 +252,55 @@ public class MatchHandler : MonoBehaviour
 
         float distanceApartSquared;
 
-        do
+        for (int i = 0; i < targetNumber; i++)
         {
-            secondRandomPointInCircleOfSpawnAreaRadius = Random.insideUnitCircle * spawnAreaRadius;
+            do
+            {
+                secondRandomPointInCircleOfSpawnAreaRadius = Random.insideUnitCircle * spawnAreaRadius;
 
-            distanceApartSquared = (randomPointInCircleOfSpawnAreaRadius - secondRandomPointInCircleOfSpawnAreaRadius).sqrMagnitude;
+                distanceApartSquared = (randomPointInCircleOfSpawnAreaRadius - secondRandomPointInCircleOfSpawnAreaRadius).sqrMagnitude;
 
-            distancingAttempts++;
+                distancingAttempts++;
+            }
+            while ((distanceApartSquared < spawnMinimumDistanceDifferenceSquared || distanceApartSquared > spawnMaximumDistanceDifferenceSquared) && distancingAttempts <= maximumDistancingAttemptCount);
+
+            Vector3 secondSpawnPoint = spawnCentreTransform.position + new Vector3(secondRandomPointInCircleOfSpawnAreaRadius.x, spawnPositionHeight, secondRandomPointInCircleOfSpawnAreaRadius.y);
+
+            SlammableTarget newTarget = Instantiate(slammableTargetPrefab, secondSpawnPoint, slammableTargetPrefab.transform.rotation);
+
+            initializedGameObjectsList.Add(newTarget.gameObject);
         }
-        while ((distanceApartSquared < spawnMinimumDistanceDifferenceSquared || distanceApartSquared > spawnMaximumDistanceDifferenceSquared) && distancingAttempts <= maximumDistancingAttemptCount);
 
-        Vector3 secondSpawnPoint = spawnCentreTransform.position + new Vector3(secondRandomPointInCircleOfSpawnAreaRadius.x, spawnPositionHeight, secondRandomPointInCircleOfSpawnAreaRadius.y);
+        remainingSlammableTargetCount = targetNumber;
 
-        SlammableTarget newTarget = Instantiate(slammableTargetPrefab, secondSpawnPoint, slammableTargetPrefab.transform.rotation);
-
-        initializedGameObjectsList.Add(newTarget.gameObject);
-
-        cameraFocuser.SetFocusTargetTranforms(character.transform, newTarget.transform);
+        cameraFocuser.SetFocusTargetTranforms(character.transform, initializedGameObjectsList[1].transform);
 
         return initializedGameObjectsList;
+    }
+
+    private void FocusOnAnotherTarget()
+    {
+        if(remainingSlammableTargetCount <= 1)
+        {
+            return;
+        }
+
+        GameObject currentTarget = cameraFocuser.TransformTwo.gameObject;
+
+        List<int> otherTargetIndexes = new List<int>();
+
+        for(int i = 0; i < activeGameObjects.Count; i++)
+        {
+            if (activeGameObjects[i].GetComponent<Character>() != null || activeGameObjects[i] == currentTarget)
+            {
+                continue;
+            }
+
+            otherTargetIndexes.Add(i);
+        }
+
+        int newRandomTargetIndex = Random.Range(0, otherTargetIndexes.Count);
+
+        cameraFocuser.SetTransformTwo(activeGameObjects[otherTargetIndexes[newRandomTargetIndex]].transform);
     }
 }
