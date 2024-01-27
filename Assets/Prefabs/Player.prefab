@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mover: {fileID: 8570939156731612349}
-  slamAttacker: {fileID: 8895455194037387657}
+  attackEvents: {fileID: 8895455194037387657}
   weaponSlot: {fileID: 5515463556031074646}
 --- !u!114 &3612591105728691180
 MonoBehaviour:
@@ -315,8 +315,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7859859237943480916}
   weapon: {fileID: 1200005792939765718}
-  minimumRequiredSlamProgress: 0.25
-  slamMagnitudeMultiplier: 0.25
+  minimumRequiredAttackChargeProgress: 0
+  chargeEffectMultiplier: 0
 --- !u!114 &4153550989010761701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,11 +484,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc48f4a3e9793a44aa4e43e2e16eda64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Info>k__BackingField: {fileID: 0}
-  slamAttacker: {fileID: 0}
+  info: {fileID: 0}
+  attackEvents: {fileID: 0}
   hostCollider: {fileID: 7687244271958224670}
   weaponCollider: {fileID: 3763791424216913053}
-  slamMagnitude: 0
+  buryPotential: 0
 --- !u!54 &4730406796863130622
 Rigidbody:
   m_ObjectHideFlags: 0
