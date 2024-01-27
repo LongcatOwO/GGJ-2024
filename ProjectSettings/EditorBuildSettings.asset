@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HowToPlayScene.unity
     guid: 31152278d460749438affb40bddb472d
+  - enabled: 1
+    path: Assets/Scenes/ChangeControlScene.unity
+    guid: 6f0124a271d4ac246847eaa3e284123e
   m_configObjects: {}
