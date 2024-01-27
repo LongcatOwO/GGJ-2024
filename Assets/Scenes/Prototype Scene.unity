@@ -1066,7 +1066,7 @@ Transform:
   m_GameObject: {fileID: 1231485760}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.25, z: 0}
+  m_LocalPosition: {x: 0, y: 1.25, z: 1.89}
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1232,7 +1232,7 @@ PrefabInstance:
     - target: {fileID: 2500451846505626296, guid: 08b4890cf47c41041b3e4f17a6b38b8c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3678537598335113721, guid: 08b4890cf47c41041b3e4f17a6b38b8c,
         type: 3}
@@ -1395,6 +1395,12 @@ MonoBehaviour:
   weapon: {fileID: 0}
   minimumRequiredSlamProgress: 0.25
   slamMagnitudeMultiplier: 0.25
+--- !u!4 &1344386311 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5635255469448625580, guid: 08b4890cf47c41041b3e4f17a6b38b8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1344386305}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1599457358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1543,7 +1549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transformOne: {fileID: 1060644917}
-  transformTwo: {fileID: 1231485764}
+  transformTwo: {fileID: 1344386311}
 --- !u!4 &1680371938
 Transform:
   m_ObjectHideFlags: 0
