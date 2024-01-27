@@ -16,9 +16,16 @@ public class Skybox_S : MonoBehaviour
         public float B;
         public void RandColors()
         {
-            R = Random.Range(0f, 1f);
-            G = Random.Range(0f, 1f);
-            B = Random.Range(0f, 1f);
+            R = Random.Range(0f, 0.5f);
+            G = Random.Range(0f, 0.5f);
+            B = Random.Range(0f, 0.5f);
+        }
+
+        public ColorStructRGB(float R, float G, float B)
+        {
+            this.R = R;
+            this.G = G;
+            this.B = B;
         }
 
         public static bool operator ==(ColorStructRGB a, ColorStructRGB b)
@@ -29,6 +36,11 @@ public class Skybox_S : MonoBehaviour
         public static bool operator !=(ColorStructRGB a, ColorStructRGB b)
         {
             return a.R != b.R && a.G != b.G && a.B != b.B;
+        }
+
+        public static ColorStructRGB operator +(ColorStructRGB a, float b)
+        {
+            return new ColorStructRGB(a.R + b, a.G + b, a.B + b);
         }
 
     }
@@ -73,6 +85,7 @@ public class Skybox_S : MonoBehaviour
         {
             TopColorBlend = 0f;
             TopColorNext.RandColors();
+            TopColorNext = TopColorNext + 0.5f;
         }
 
         if (BottomColorCurrent != BottomColorNext)
