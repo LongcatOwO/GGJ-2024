@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 2653337942971357003}
   - component: {fileID: -2002519612181570171}
   m_Layer: 7
-  m_Name: WeaponDroppedForm
+  m_Name: WeaponPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
