@@ -29,6 +29,16 @@ PrefabInstance:
       propertyPath: inverseFacingDirection
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2977541384801813596, guid: 4abd96581c2643b4c8e75fde428d7f08,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2977541384801813596, guid: 4abd96581c2643b4c8e75fde428d7f08,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7008176741564823501, guid: 4abd96581c2643b4c8e75fde428d7f08,
         type: 3}
       propertyPath: m_LocalPosition.x
