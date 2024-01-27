@@ -10,6 +10,10 @@ public class Character : MonoBehaviour
     [Header("Component References")]
     [SerializeField] private Mover mover;
     [SerializeField] private SlamAttackExecutor slamAttackExecutor;
+    [SerializeField] private Transform weaponSlot;
+
+    [Header("Player Propertiers")]
+    [SerializeField] private bool isSecondaryPlayer;
 
     private SlammingWeapon wieldedMeleeWeapon;
 
@@ -20,8 +24,25 @@ public class Character : MonoBehaviour
         slamAttackExecutor.OnSlamEnded += UnlockMovement;
 
         slamAttackExecutor.OnSlamCancelled += UnlockMovement;
+
+        if (!isSecondaryPlayer)
+        {
+            PlayerInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
+
+            PlayerInputHandler.Instance.OnAttackInputDown += slamAttackExecutor.RaiseWeapon;
+
+            PlayerInputHandler.Instance.OnAttackInputUp += slamAttackExecutor.SlamWeapon;
+        }
+        else
+        {
+            PlayerTwoInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
+
+            PlayerTwoInputHandler.Instance.OnAttackInputDown += slamAttackExecutor.RaiseWeapon;
+
+            PlayerTwoInputHandler.Instance.OnAttackInputUp += slamAttackExecutor.SlamWeapon;
+        }
     }
-    
+
     private void OnDisable()
     {
         slamAttackExecutor.OnSlamInitiated -= LockMovement;
@@ -29,18 +50,40 @@ public class Character : MonoBehaviour
         slamAttackExecutor.OnSlamEnded -= UnlockMovement;
 
         slamAttackExecutor.OnSlamCancelled -= UnlockMovement;
+
+        if (!isSecondaryPlayer)
+        {
+            PlayerInputHandler.Instance.OnMoveInput -= mover.ResolveMoveInput;
+
+            PlayerInputHandler.Instance.OnAttackInputDown -= slamAttackExecutor.RaiseWeapon;
+
+            PlayerInputHandler.Instance.OnAttackInputUp -= slamAttackExecutor.SlamWeapon;
+
+
+        }
+        else
+        {
+            PlayerTwoInputHandler.Instance.OnMoveInput -= mover.ResolveMoveInput;
+
+            PlayerTwoInputHandler.Instance.OnAttackInputDown -= slamAttackExecutor.RaiseWeapon;
+
+            PlayerTwoInputHandler.Instance.OnAttackInputUp -= slamAttackExecutor.SlamWeapon;
+        }
     }
 
     public void PickupWeapon(SlammingWeapon weapon)
     {
         if(wieldedMeleeWeapon != null)
         {
-            Destroy(weapon);
+            Instantiate(weapon.Info.DroppedForm, transform.position, Quaternion.identity);
+            Destroy(wieldedMeleeWeapon);
         }
 
         wieldedMeleeWeapon = weapon;
 
         wieldedMeleeWeapon.InitializeWeapon(gameObject);        
+
+        wieldedMeleeWeapon.transform.SetParent(weaponSlot, false);
     }
 
     public void LockMovement()

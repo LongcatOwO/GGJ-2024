@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 16590163138745203}
   - component: {fileID: 3678537598335113721}
   - component: {fileID: 7512806243160602025}
+  - component: {fileID: 3612591105728691180}
+  - component: {fileID: 9026219042088678774}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -127,11 +129,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hostCapsuleCollider: {fileID: 7687244271958224670}
-  moveSpeed: 2
+  moveSpeed: 1
   moveCollisionLayerMask:
     serializedVersion: 2
-    m_Bits: 0
-  movementCheckDistanceError: 0
+    m_Bits: 128
+  movementCheckDistanceError: 0.01
 --- !u!114 &744928158097820541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 1
+  inverseFacingDirection: 0
 --- !u!114 &7512806243160602025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +218,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 8570939156731612349}
   slamAttackExecutor: {fileID: 8895455194037387657}
+  weaponSlot: {fileID: 5515463556031074646}
+  isSecondaryPlayer: 0
+--- !u!114 &3612591105728691180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500451846505626296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 635f89660c2139ef2a9b062ac1d89758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &9026219042088678774
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500451846505626296}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fb13765e81505374d8cf56f05f525538, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3782005908977950779
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,6 +265,7 @@ GameObject:
   - component: {fileID: 7859859237943480916}
   - component: {fileID: 8895455194037387657}
   - component: {fileID: 4153550989010761701}
+  - component: {fileID: 7620140839092766237}
   m_Layer: 7
   m_Name: Graphics
   m_TagString: Untagged
@@ -301,6 +340,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 0
+  inverseFacingDirection: 0
+--- !u!114 &7620140839092766237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3782005908977950779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f7772595c5c674cabd35687146f51e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7859859237943480916}
+  weapon: {fileID: 0}
+  minimumRequiredSlamProgress: 0.25
+  slamMagnitudeMultiplier: 0.25
 --- !u!1 &6189207283038588926
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc48f4a3e9793a44aa4e43e2e16eda64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Info>k__BackingField: {fileID: 0}
   attackExecutor: {fileID: 8895455194037387657}
   hostCollider: {fileID: 7687244271958224670}
   weaponCollider: {fileID: 3763791424216913053}
