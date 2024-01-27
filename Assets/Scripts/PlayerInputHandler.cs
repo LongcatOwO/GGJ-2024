@@ -32,6 +32,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (playerInputAsset == null)
         {
             playerInputAsset = new PlayerControls();
+
             SubscribePlayerInputEvents();
         }
 
@@ -43,6 +44,7 @@ public class PlayerInputHandler : MonoBehaviour
         if(playerInputAsset == null)
         {
             playerInputAsset = new PlayerControls();
+
             SubscribePlayerInputEvents();
         }
 

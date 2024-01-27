@@ -12,7 +12,16 @@ public class WeaponPicker : MonoBehaviour
     void Awake()
     {
         _character = GetComponent<Character>();
+    }
+
+    private void OnEnable()
+    {
         PlayerInputHandler.Instance.OnPickupInput += OnPickupInput;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInputHandler.Instance.OnPickupInput -= OnPickupInput;
     }
 
     void OnPickupInput()
