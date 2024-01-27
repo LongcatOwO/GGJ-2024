@@ -37,10 +37,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isSlammingWeapon
+    m_ConditionEvent: isChargingWeapon
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: raiseWeaponTrigger
+    m_ConditionEvent: startWeaponCharging
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2417335638345654645}
@@ -63,7 +63,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Character_RaiseWeapon
+  m_Name: StartWeaponCharging
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -89,7 +89,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Character_SlamWeapon
+  m_Name: EndWeaponCharging
   m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
@@ -115,21 +115,21 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player
+  m_Name: Slammable Weapon
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: isSlammingWeapon
+  - m_Name: isChargingWeapon
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: raiseWeaponTrigger
+    m_Controller: {fileID: 9100000}
+  - m_Name: startWeaponCharging
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -150,7 +150,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Character_Idle
+  m_Name: WeaponIdle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

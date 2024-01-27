@@ -9,30 +9,30 @@ public class Character : MonoBehaviour
 
     [Header("Component References")]
     [SerializeField] private Mover mover;
-    [SerializeField] private SlamAttackExecuter slamAttacker;
+    [SerializeField] private AttackAnimationEvents attackEvents;
     [SerializeField] private Transform weaponSlot;
 
-    private SlammingWeapon wieldedMeleeWeapon;
+    private SlammableWeapon wieldedMeleeWeapon;
 
     private void OnEnable()
     {
-        slamAttacker.OnSlamInitiated += LockMovement;
+        attackEvents.OnAttackInitiated += LockMovement;
 
-        slamAttacker.OnSlamEnded += UnlockMovement;
+        attackEvents.OnAttackEnded += UnlockMovement;
 
-        slamAttacker.OnSlamCancelled += UnlockMovement;
+        attackEvents.OnAttackCancelled += UnlockMovement;
     }
 
     private void OnDisable()
     {
-        slamAttacker.OnSlamInitiated -= LockMovement;
+        attackEvents.OnAttackInitiated -= LockMovement;
 
-        slamAttacker.OnSlamEnded -= UnlockMovement;
+        attackEvents.OnAttackEnded -= UnlockMovement;
 
-        slamAttacker.OnSlamCancelled -= UnlockMovement;
+        attackEvents.OnAttackCancelled -= UnlockMovement;
     }
 
-    public void PickupWeapon(SlammingWeapon weapon)
+    public void PickupWeapon(SlammableWeapon weapon)
     {
         if(wieldedMeleeWeapon != null)
         {

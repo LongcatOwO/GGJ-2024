@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class SlammingWeapon : MonoBehaviour
+public class SlammableWeapon : MonoBehaviour
 {
     //This class handles the activation of the "slamming weapon" as well as its hit effects.
 
-    [field: SerializeField] public WeaponInfo Info { get; private set; }
+    public WeaponInfo Info { get { return info; } }
+
+    [Header("Weapon Reference")]
+    [SerializeField] private WeaponInfo info;
 
     [Header("Component References")]
-    [SerializeField] private SlamAttackExecuter slamAttacker;
+    [SerializeField] private AttackAnimationEvents attackEvents;
     [SerializeField] private Collider hostCollider;
     [SerializeField] private Collider weaponCollider;
 
     [Header("Hit Properties")]
-    [SerializeField] private float slamMagnitude;
+    [SerializeField] private float buryPotential;
 
-    private GameObject hitTargetGameObject;
+    private GameObject hitTargetGameObject;    
 
     private void Start()
     {
@@ -52,36 +55,42 @@ public class SlammingWeapon : MonoBehaviour
 
             hitTargetGameObject = other.gameObject;
 
-            hitTargetGameObject.transform.position += Vector3.down * slamMagnitude;
+            hitTargetGameObject.transform.position += Vector3.down * buryPotential;
         }
     }
 
     private void SubscribeAttackExecutorEvents()
     {
-        if (slamAttacker == null) return;
-        slamAttacker.OnSlamMagnitudeExecuted += InitializeAttack;
-        slamAttacker.OnSlamEnded += EndAttack;
+        if (attackEvents == null) return;
+
+        attackEvents.OnAttackExecuted += InitializeAttack;
+
+        attackEvents.OnAttackEnded += EndAttack;
     }
 
     private void UnsubscribeAttackExecutorEvents()
     {
-        if (slamAttacker == null) return;
-        slamAttacker.OnSlamMagnitudeExecuted -= InitializeAttack;
-        slamAttacker.OnSlamEnded -= EndAttack;
+        if (attackEvents == null) return;
+
+        attackEvents.OnAttackExecuted -= InitializeAttack;
+
+        attackEvents.OnAttackEnded -= EndAttack;
     }
 
     //Initializes the weapon's component references.
     public void InitializeWeapon(GameObject hostGameObject)
     {
         hostCollider = hostGameObject.GetComponent<Collider>();
-        slamAttacker = hostGameObject.GetComponentInChildren<SlamAttackExecuter>();
+
+        attackEvents = hostGameObject.GetComponentInChildren<AttackAnimationEvents>();
+
         SubscribeAttackExecutorEvents();
     }
 
     //Readies the weapon for attack. Enables the weapon's collider to allow "OnTriggerEnter()" calls.
-    public void InitializeAttack(float slamMagnitude)
+    public void InitializeAttack(float buryPotential)
     {
-        this.slamMagnitude = slamMagnitude;
+        this.buryPotential = buryPotential;
 
         weaponCollider.enabled = true;
     }
