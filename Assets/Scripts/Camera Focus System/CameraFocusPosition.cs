@@ -25,4 +25,11 @@ public class CameraFocusPosition : MonoBehaviour
 
         transform.rotation = Quaternion.LookRotation(perpendicularVector);
     }
+
+    public void SetFocusTargetTranforms(Transform transformOne, Transform transformTwo)
+    {
+        this.transformOne = transformOne;
+
+        this.transformTwo = transformTwo;
+    }
 }
