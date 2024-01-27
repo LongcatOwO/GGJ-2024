@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlamAttackExecutor : MonoBehaviour
+public class SlamAttackExecuter : MonoBehaviour
 {
     //This class handlers the attack animation of melee "slammable" weapons.
 
@@ -21,7 +21,7 @@ public class SlamAttackExecutor : MonoBehaviour
     {
         animator.SetBool("isSlammingWeapon", false);
 
-        OnSlamEnded?.Invoke();        
+        OnSlamEnded?.Invoke();
     }
 
     public void SlamWeapon()
