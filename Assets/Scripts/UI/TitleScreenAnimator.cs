@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenuAnimator : MonoBehaviour
+public class TitleScreenAnimator : MonoBehaviour
 {
     [SerializeField] Texture2D[] Textures;
     [SerializeField] float AnimationSpeed = 20f;
@@ -42,7 +43,7 @@ public class MainMenuAnimator : MonoBehaviour
     {
         if (_currentFrameIndex >= NextScreenTriggerFrame - 1)
         {
-            Debug.Log("Go to next scene!");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         } 
         else
         {
