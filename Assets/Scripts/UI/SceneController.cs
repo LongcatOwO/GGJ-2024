@@ -12,4 +12,9 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene("HowToPlayScene");
     }
+
+    public void GoToChangeControl()
+    {
+        SceneManager.LoadScene("ChangeControlScene");
+    }
 }
