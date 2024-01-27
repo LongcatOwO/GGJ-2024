@@ -8,14 +8,16 @@ public class GroundingChecker : MonoBehaviour
 {
     public event Action<bool> OnChangeToNewGroundingState;
 
+    public bool IsGrounded { get { return isGrounded; } }
+
     [Header("Component References")]
     [SerializeField] private CapsuleCollider hostCapsuleCollider;
 
     [Header("Grounding Check Properties")]
+    [SerializeField] private bool isGrounded;
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private float groundCheckError;
-
-    private bool isGrounded;
+    
     private float effectiveSphereCastDistance;
     private float effectiveSphereCastRadius;
 

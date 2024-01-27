@@ -56,7 +56,7 @@ public class AttackAnimationEvents : MonoBehaviour
         {
             animator.SetBool("isChargingWeapon", true);
 
-            animator.SetTrigger("startWeaponCharging");
+            animator.SetTrigger("startWeaponChargingTrigger");
 
             OnAttackInitiated?.Invoke();
         }
