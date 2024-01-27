@@ -7,6 +7,8 @@ public class SlammingWeapon : MonoBehaviour
 {
     //This class handles the activation of the "slamming weapon" as well as its hit effects.
 
+    [field: SerializeField] public WeaponInfo Info { get; private set; }
+
     [Header("Component References")]
     [SerializeField] private SlamAttackExecutor attackExecutor;
     [SerializeField] private Collider hostCollider;
@@ -29,17 +31,13 @@ public class SlammingWeapon : MonoBehaviour
     //Registers the events that will invoke the methods of this weapon.
     private void OnEnable()
     {
-        attackExecutor.OnSlamMagnitudeExecuted += InitializeAttack;
-
-        attackExecutor.OnSlamEnded += EndAttack;
+        SubscribeAttackExecutorEvents();
     }
     
     //Unregisters the events that will invoke the methods of this weapon.
     private void OnDisable()
     {
-        attackExecutor.OnSlamMagnitudeExecuted += InitializeAttack;
-
-        attackExecutor.OnSlamEnded += EndAttack;
+        UnsubscribeAttackExecutorEvents();
     }
 
     //If a viable target enters the weapon's collider, trigger the hit effect.
@@ -58,12 +56,26 @@ public class SlammingWeapon : MonoBehaviour
         }
     }
 
+    private void SubscribeAttackExecutorEvents()
+    {
+        if (attackExecutor == null) return;
+        attackExecutor.OnSlamMagnitudeExecuted += InitializeAttack;
+        attackExecutor.OnSlamEnded += EndAttack;
+    }
+
+    private void UnsubscribeAttackExecutorEvents()
+    {
+        if (attackExecutor == null) return;
+        attackExecutor.OnSlamMagnitudeExecuted -= InitializeAttack;
+        attackExecutor.OnSlamEnded -= EndAttack;
+    }
+
     //Initializes the weapon's component references.
     public void InitializeWeapon(GameObject hostGameObject)
     {
         hostCollider = hostGameObject.GetComponent<Collider>();
-
         attackExecutor = hostGameObject.GetComponentInChildren<SlamAttackExecutor>();
+        SubscribeAttackExecutorEvents();
     }
 
     //Readies the weapon for attack. Enables the weapon's collider to allow "OnTriggerEnter()" calls.

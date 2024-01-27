@@ -10,6 +10,7 @@ public class Character : MonoBehaviour
     [Header("Component References")]
     [SerializeField] private Mover mover;
     [SerializeField] private SlamAttackExecutor slamAttackExecutor;
+    [SerializeField] private Transform weaponSlot;
 
     private SlammingWeapon wieldedMeleeWeapon;
 
@@ -35,12 +36,15 @@ public class Character : MonoBehaviour
     {
         if(wieldedMeleeWeapon != null)
         {
-            Destroy(weapon);
+            Instantiate(weapon.Info.DroppedForm, transform.position, Quaternion.identity);
+            Destroy(wieldedMeleeWeapon);
         }
 
         wieldedMeleeWeapon = weapon;
 
         wieldedMeleeWeapon.InitializeWeapon(gameObject);        
+
+        wieldedMeleeWeapon.transform.SetParent(weaponSlot, false);
     }
 
     public void LockMovement()

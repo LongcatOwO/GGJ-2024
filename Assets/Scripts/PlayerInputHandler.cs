@@ -26,6 +26,14 @@ public class PlayerInputHandler : MonoBehaviour
         }
 
         Instance = this;
+
+        if (playerInputAsset == null)
+        {
+            playerInputAsset = new PlayerControls();
+            SubscribePlayerInputEvents();
+        }
+
+        playerInputAsset.Enable();
     }
 
     private void OnEnable()
@@ -33,16 +41,15 @@ public class PlayerInputHandler : MonoBehaviour
         if(playerInputAsset == null)
         {
             playerInputAsset = new PlayerControls();
+            SubscribePlayerInputEvents();
         }
-
-        SubscribePlayerInputEvents();
 
         playerInputAsset.Enable();
     }
 
     private void OnDisable()
     {
-        playerInputAsset.Disable();
+        playerInputAsset?.Disable();
     }
 
     private void SubscribePlayerInputEvents()
