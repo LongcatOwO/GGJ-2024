@@ -20,7 +20,8 @@ public class SlammableWeapon : MonoBehaviour
     [Header("Hit Properties")]
     [SerializeField] private float buryPotential;
 
-    private GameObject hitTargetGameObject;    
+    private GameObject hitTargetGameObject;
+    private float slamForce;
 
     private void Start()
     {
@@ -55,7 +56,7 @@ public class SlammableWeapon : MonoBehaviour
 
             hitTargetGameObject = other.gameObject;
 
-            hitTargetGameObject.transform.position += Vector3.down * buryPotential;
+            hitTargetGameObject.transform.position += Vector3.down * slamForce * buryPotential;
         }
     }
 
@@ -88,9 +89,9 @@ public class SlammableWeapon : MonoBehaviour
     }
 
     //Readies the weapon for attack. Enables the weapon's collider to allow "OnTriggerEnter()" calls.
-    public void InitializeAttack(float buryPotential)
+    public void InitializeAttack(float slamForce)
     {
-        this.buryPotential = buryPotential;
+        this.slamForce = slamForce;
 
         weaponCollider.enabled = true;
     }

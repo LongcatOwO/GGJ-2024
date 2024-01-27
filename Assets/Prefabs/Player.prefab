@@ -36,7 +36,7 @@ Transform:
   m_GameObject: {fileID: 2500451846505626296}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.93, y: 1.25, z: -2.33}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -315,8 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7859859237943480916}
   weapon: {fileID: 1200005792939765718}
-  minimumRequiredAttackChargeProgress: 0
-  chargeEffectMultiplier: 0
+  minimumRequiredAttackChargeProgress: 0.25
 --- !u!114 &4153550989010761701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,10 +484,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: {fileID: 0}
-  attackEvents: {fileID: 0}
+  attackEvents: {fileID: 8895455194037387657}
   hostCollider: {fileID: 7687244271958224670}
   weaponCollider: {fileID: 3763791424216913053}
-  buryPotential: 0
+  buryPotential: 0.1
 --- !u!54 &4730406796863130622
 Rigidbody:
   m_ObjectHideFlags: 0

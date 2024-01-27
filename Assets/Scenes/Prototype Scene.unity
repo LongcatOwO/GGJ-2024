@@ -228,18 +228,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87397233}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &125596231 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8895455194037387657, guid: 08b4890cf47c41041b3e4f17a6b38b8c,
-    type: 3}
-  m_PrefabInstance: {fileID: 9042513393313454316}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85f7772595c5c674cabd35687146f51e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &155696859
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +292,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155696859}
   serializedVersion: 2
-  m_LocalRotation: {x: 1.3058035e-15, y: -0.7711803, z: 1.5818144e-15, w: 0.6366169}
+  m_LocalRotation: {x: -1.3058035e-15, y: -0.7711803, z: -1.5818144e-15, w: 0.6366169}
   m_LocalPosition: {x: 7.908927, y: 0.51, z: -0.49561965}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -399,7 +387,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 1.3058035e-15, y: -0.7711803, z: 1.5818144e-15, w: 0.6366169}
+  m_LocalRotation: {x: -1.3058035e-15, y: -0.7711803, z: -1.5818144e-15, w: 0.6366169}
   m_LocalPosition: {x: 7.908927, y: 0.51, z: -0.49561965}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1957,16 +1945,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1200005792939765718, guid: 08b4890cf47c41041b3e4f17a6b38b8c,
-        type: 3}
-      propertyPath: attackEvents
-      value: 
-      objectReference: {fileID: 125596231}
-    - target: {fileID: 1200005792939765718, guid: 08b4890cf47c41041b3e4f17a6b38b8c,
-        type: 3}
-      propertyPath: buryPotential
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2500451846505626296, guid: 08b4890cf47c41041b3e4f17a6b38b8c,
         type: 3}
       propertyPath: m_Name
@@ -2021,11 +1999,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895455194037387657, guid: 08b4890cf47c41041b3e4f17a6b38b8c,
-        type: 3}
-      propertyPath: chargeEffectMultiplier
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

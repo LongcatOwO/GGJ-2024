@@ -15,7 +15,6 @@ public class AttackAnimationEvents : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private SlammableWeapon weapon;
     [SerializeField] private float minimumRequiredAttackChargeProgress;
-    [SerializeField] private float chargeEffectMultiplier;
 
     public void EndWeaponCharge()
     {
@@ -34,7 +33,7 @@ public class AttackAnimationEvents : MonoBehaviour
 
             if (chargeProgress >= minimumRequiredAttackChargeProgress)
             {
-                OnAttackExecuted?.Invoke(chargeProgress * chargeEffectMultiplier);
+                OnAttackExecuted?.Invoke(chargeProgress);
             }
             else
             {
