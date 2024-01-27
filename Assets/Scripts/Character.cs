@@ -13,7 +13,7 @@ public class Character : MonoBehaviour
     [SerializeField] private Transform weaponSlot;
 
     [Header("Player Propertiers")]
-    [SerializeField] private bool isSecondaryPlayer;
+    [SerializeField] public bool isSecondaryPlayer;
 
     private SlammingWeapon wieldedMeleeWeapon;
 
