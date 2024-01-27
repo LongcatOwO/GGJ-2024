@@ -13,7 +13,7 @@ public class AttackAnimationEvents : MonoBehaviour
     public event Action OnAttackCancelled;
 
     [SerializeField] private Animator animator;
-    [SerializeField] private SlammingWeapon weapon;
+    [SerializeField] private SlammableWeapon weapon;
     [SerializeField] private float minimumRequiredAttackChargeProgress;
     [SerializeField] private float chargeEffectMultiplier;
 
