@@ -11,26 +11,8 @@ public class SeaOfHappiness : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.TryGetComponent(out PlayerController playerController))
-        {
-            //player 1 scores
-            if (playerController.IsSecondaryPlayer)
-            {
-                scoreComponent.Player1Score++;
-            }
-            //player 2 scores
-            else
-            {
-                scoreComponent.Player2Score++;
-            }
+        MatchHandler.Instance.EvaluateMatchEnd(other.gameObject);
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
-            return;
-        }
-
-        Destroy(other.gameObject);
-
-        //insert UI stuff (Game Over screen here)
+        Destroy(other.gameObject);        
     }
 }

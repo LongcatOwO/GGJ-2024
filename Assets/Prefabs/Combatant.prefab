@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hostCapsuleCollider: {fileID: 7687244271958224670}
+  groundingChecker: {fileID: 744928158097820541}
   moveSpeed: 1
   moveCollisionLayerMask:
     serializedVersion: 2
