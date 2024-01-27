@@ -126,7 +126,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c207d497061b34cb45aaf0c8929a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hostCapsuleCollider: {fileID: 7687244271958224670}
   moveSpeed: 2
+  moveCollisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  movementCheckDistanceError: 0
 --- !u!114 &744928158097820541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731f8d6e99e73084096977ae1d456fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hostCapsuleCollider: {fileID: 7687244271958224670}
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64

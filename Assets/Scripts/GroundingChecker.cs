@@ -8,6 +8,10 @@ public class GroundingChecker : MonoBehaviour
 {
     public event Action<bool> OnChangeToNewGroundingState;
 
+    [Header("Component References")]
+    [SerializeField] private CapsuleCollider hostCapsuleCollider;
+
+    [Header("Grounding Check Properties")]
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private float groundCheckError;
 
@@ -17,8 +21,6 @@ public class GroundingChecker : MonoBehaviour
 
     private void Awake()
     {
-        CapsuleCollider hostCapsuleCollider = GetComponent<CapsuleCollider>();
-
         effectiveSphereCastRadius = hostCapsuleCollider.radius * Mathf.Max(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
 
         effectiveSphereCastDistance = hostCapsuleCollider.height / 2 * transform.lossyScale.y + groundCheckError -effectiveSphereCastRadius;
