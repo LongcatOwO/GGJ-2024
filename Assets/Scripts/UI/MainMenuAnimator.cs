@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(IPlayerInputHandler))]
 public class MainMenuAnimator : MonoBehaviour
 {
     [SerializeField] Texture2D[] Textures;
@@ -16,8 +17,9 @@ public class MainMenuAnimator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerInputHandler.Instance.OnAttackInputDown += () => _holdingInput = true;
-        PlayerInputHandler.Instance.OnAttackInputUp += () => _holdingInput = false;
+        var inputHandler = GetComponent<IPlayerInputHandler>();
+        inputHandler.OnAttackInputDown += () => _holdingInput = true;
+        inputHandler.OnAttackInputUp += () => _holdingInput = false;
 
         _rawImage = GetComponent<RawImage>();
     }

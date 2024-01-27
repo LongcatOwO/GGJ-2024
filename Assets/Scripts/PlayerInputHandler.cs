@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [DefaultExecutionOrder(-2)]
-public class PlayerInputHandler : MonoBehaviour
+public class PlayerInputHandler : MonoBehaviour, IPlayerInputHandler
 {
     //This class invokes input events.
 
@@ -14,46 +14,27 @@ public class PlayerInputHandler : MonoBehaviour
     public event Action OnAttackInputUp;
     public event Action OnPickupInput;
 
-    public PlayerControls PlayerInputAsset { get { return playerInputAsset; } }
-
-    public static PlayerInputHandler Instance;    
-
     private PlayerControls playerInputAsset;    
 
     private void Awake()
     {
-        if(Instance != null)
-        {
-            Destroy(this);
-        }
+        playerInputAsset = new PlayerControls();
+        SubscribePlayerInputEvents();
+    }
 
-        Instance = this;
-
-        if (playerInputAsset == null)
-        {
-            playerInputAsset = new PlayerControls();
-
-            SubscribePlayerInputEvents();
-        }
-
-        playerInputAsset.Enable();
+    private void OnDestroy()
+    {
+        UnsubscribePlayerInputEvents();
     }
 
     private void OnEnable()
     {
-        if(playerInputAsset == null)
-        {
-            playerInputAsset = new PlayerControls();
-
-            SubscribePlayerInputEvents();
-        }
-
-        playerInputAsset.Enable();
+        playerInputAsset.General.Enable();
     }
 
     private void OnDisable()
     {
-        playerInputAsset?.Disable();
+        playerInputAsset.General.Disable();
     }
 
     private void SubscribePlayerInputEvents()
@@ -67,6 +48,19 @@ public class PlayerInputHandler : MonoBehaviour
         playerInputAsset.General.Attack.canceled += ResolveAttackInputCancelled;
 
         playerInputAsset.General.Pickup.performed += ResolvePickup;
+    }
+
+    private void UnsubscribePlayerInputEvents()
+    {
+        playerInputAsset.General.Move.performed -= ResolveMoveDown;
+
+        playerInputAsset.General.Move.canceled -= ResolveMoveInputUp;
+
+        playerInputAsset.General.Attack.started -= ResolveAttackInput;
+
+        playerInputAsset.General.Attack.canceled -= ResolveAttackInputCancelled;
+
+        playerInputAsset.General.Pickup.performed -= ResolvePickup;
     }
 
     private void ResolveAttackInputCancelled(InputAction.CallbackContext context)

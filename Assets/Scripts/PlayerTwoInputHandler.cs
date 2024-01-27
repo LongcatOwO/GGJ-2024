@@ -5,33 +5,30 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [DefaultExecutionOrder(-1)]
-public class PlayerTwoInputHandler : MonoBehaviour
+public class PlayerTwoInputHandler : MonoBehaviour, IPlayerInputHandler
 {
     //This class invokes input events.
-
     public event Action<Vector2> OnMoveInput;
     public event Action OnAttackInputDown;
     public event Action OnAttackInputUp;
-
-    public static PlayerTwoInputHandler Instance;
+    public event Action OnPickupInput;
 
     private PlayerControls playerInputAsset;
 
     private void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(this);
-        }
-
-        Instance = this;
+        playerInputAsset = new PlayerControls();
+        SubscribePlayerInputEvents();
     }
 
     private void OnEnable()
     {
-        playerInputAsset = PlayerInputHandler.Instance.PlayerInputAsset;
+        playerInputAsset.PlayerTwo.Enable();
+    }
 
-        SubscribePlayerInputEvents();
+    private void OnDisable()
+    {
+        playerInputAsset.PlayerTwo.Disable();
     }
 
     private void SubscribePlayerInputEvents()
@@ -43,6 +40,8 @@ public class PlayerTwoInputHandler : MonoBehaviour
         playerInputAsset.PlayerTwo.Attack.started += ResolveAttackInput;
 
         playerInputAsset.PlayerTwo.Attack.canceled += ResolveAttackInputCancelled;
+
+        playerInputAsset.PlayerTwo.Pickup.performed += ResolvePickup;
     }
 
     private void ResolveAttackInputCancelled(InputAction.CallbackContext context)
@@ -65,5 +64,10 @@ public class PlayerTwoInputHandler : MonoBehaviour
         Vector2 inputDirection = context.ReadValue<Vector2>();
 
         OnMoveInput?.Invoke(inputDirection * -1);
+    }
+
+    private void ResolvePickup(InputAction.CallbackContext context)
+    {
+        OnPickupInput?.Invoke();
     }
 }

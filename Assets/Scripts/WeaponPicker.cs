@@ -14,17 +14,7 @@ public class WeaponPicker : MonoBehaviour
         _character = GetComponent<Character>();
     }
 
-    private void OnEnable()
-    {
-        PlayerInputHandler.Instance.OnPickupInput += OnPickupInput;
-    }
-
-    private void OnDisable()
-    {
-        PlayerInputHandler.Instance.OnPickupInput -= OnPickupInput;
-    }
-
-    void OnPickupInput()
+    public void Pickup()
     {
         if (_weaponInRange == null) return;
         var heldWeapon = Instantiate(_weaponInRange.Info.HeldForm).GetComponent<SlammingWeapon>();
