@@ -28,10 +28,18 @@ public class Character : MonoBehaviour
         if (!isSecondaryPlayer)
         {
             PlayerInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
+
+            PlayerInputHandler.Instance.OnAttackInputDown += slamAttackExecutor.RaiseWeapon;
+
+            PlayerInputHandler.Instance.OnAttackInputUp += slamAttackExecutor.SlamWeapon;
         }
         else
         {
-          //  PlayerTwoInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
+            PlayerTwoInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
+
+            PlayerTwoInputHandler.Instance.OnAttackInputDown += slamAttackExecutor.RaiseWeapon;
+
+            PlayerTwoInputHandler.Instance.OnAttackInputUp += slamAttackExecutor.SlamWeapon;
         }
     }
 
@@ -45,11 +53,21 @@ public class Character : MonoBehaviour
 
         if (!isSecondaryPlayer)
         {
-            PlayerInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
+            PlayerInputHandler.Instance.OnMoveInput -= mover.ResolveMoveInput;
+
+            PlayerInputHandler.Instance.OnAttackInputDown -= slamAttackExecutor.RaiseWeapon;
+
+            PlayerInputHandler.Instance.OnAttackInputUp -= slamAttackExecutor.SlamWeapon;
+
+
         }
         else
         {
-         //   PlayerTwoInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
+            PlayerTwoInputHandler.Instance.OnMoveInput -= mover.ResolveMoveInput;
+
+            PlayerTwoInputHandler.Instance.OnAttackInputDown -= slamAttackExecutor.RaiseWeapon;
+
+            PlayerTwoInputHandler.Instance.OnAttackInputUp -= slamAttackExecutor.SlamWeapon;
         }
     }
 

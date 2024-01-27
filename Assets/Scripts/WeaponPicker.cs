@@ -4,18 +4,15 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Character))]
-[RequireComponent(typeof(PlayerInputHandler))]
 public class WeaponPicker : MonoBehaviour
 {
     Character _character;
-    PlayerInputHandler _inputHandler;
     DroppedWeapon _weaponInRange;
 
     void Awake()
     {
         _character = GetComponent<Character>();
-        _inputHandler = GetComponent<PlayerInputHandler>();
-        _inputHandler.OnPickupInput += OnPickupInput;
+        PlayerInputHandler.Instance.OnPickupInput += OnPickupInput;
     }
 
     void OnPickupInput()
