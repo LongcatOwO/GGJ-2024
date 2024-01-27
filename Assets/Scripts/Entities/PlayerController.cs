@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
             PlayerInputHandler.Instance.OnAttackInputDown += attackEvents.StartWeaponCharge;
 
-            PlayerInputHandler.Instance.OnAttackInputUp += attackEvents.ChargeWeapon;
+            PlayerInputHandler.Instance.OnAttackInputUp += attackEvents.ExecuteWeaponAttack;
         }
         else
         {
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
             PlayerInputHandler.Instance.OnPlayerTwoAttackInputDown += attackEvents.StartWeaponCharge;
 
-            PlayerInputHandler.Instance.OnPlayerTwoAttackInputUp += attackEvents.ChargeWeapon;
+            PlayerInputHandler.Instance.OnPlayerTwoAttackInputUp += attackEvents.ExecuteWeaponAttack;
         }
     }
 
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
             PlayerInputHandler.Instance.OnAttackInputDown -= attackEvents.StartWeaponCharge;
 
-            PlayerInputHandler.Instance.OnAttackInputUp -= attackEvents.ChargeWeapon;
+            PlayerInputHandler.Instance.OnAttackInputUp -= attackEvents.ExecuteWeaponAttack;
         }
         else
         {
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
             PlayerInputHandler.Instance.OnPlayerTwoAttackInputDown -= attackEvents.StartWeaponCharge;
 
-            PlayerInputHandler.Instance.OnPlayerTwoAttackInputUp -= attackEvents.ChargeWeapon;
+            PlayerInputHandler.Instance.OnPlayerTwoAttackInputUp -= attackEvents.ExecuteWeaponAttack;
         }
     }
 }

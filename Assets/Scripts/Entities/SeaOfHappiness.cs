@@ -9,20 +9,21 @@ public class SeaOfHappiness : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GameObject scoreObject = GameObject.Find("ScoreObj");
-        if (other == null)
-        {
-            return;
-        }
-        //player 1 scores
-        if (other.gameObject.GetComponent<PlayerController>().IsSecondaryPlayer)
-        {
-            scoreObject.GetComponent<Score>().Player1Score++;
 
-        }
-        else //player 2 scores
+        if(other.gameObject.TryGetComponent(out PlayerController playerController))
         {
-            scoreObject.GetComponent<Score>().Player2Score++;
+            //player 1 scores
+            if (playerController.IsSecondaryPlayer)
+            {
+                scoreObject.GetComponent<Score>().Player1Score++;
+            }
+            //player 2 scores
+            else
+            {
+                scoreObject.GetComponent<Score>().Player2Score++;
+            }
         }
+
         Destroy(other.gameObject);
 
         //insert UI stuff (Game Over screen here)
