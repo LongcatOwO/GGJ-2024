@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Rigidbody))]
 public class Character : MonoBehaviour
 {
     //This class defines the host game object as a character and as a result, can be "slammed".
@@ -13,6 +15,14 @@ public class Character : MonoBehaviour
     [SerializeField] private Transform weaponSlot;
 
     private SlammableWeapon wieldedMeleeWeapon;
+    private new Rigidbody rigidbody;
+
+    // @param direction[Vector2]
+    // @param distance[float]
+    // @param duration[float]
+    private event Action<Vector2, float, float> OnCharacterKnockback;
+
+    private Coroutine knockbackCoroutine;
 
     private void OnEnable()
     {
@@ -56,5 +66,31 @@ public class Character : MonoBehaviour
     public void UnlockMovement()
     {
         mover.SetMovementLock(false);
+    }
+
+    public void ApplyKnockback(Vector2 direction, float distance, float duration)
+    {
+        if (knockbackCoroutine != null)
+        {
+            StopCoroutine(knockbackCoroutine);
+        }
+
+        knockbackCoroutine = StartCoroutine(ProcessKnockback(direction, distance, duration));
+        OnCharacterKnockback?.Invoke(direction, distance, duration);
+    }
+
+    private IEnumerator ProcessKnockback(Vector2 direction, float distance, float duration)
+    {
+        const float lerpFactor = 1.0f;
+
+        Vector3 targetPosition = transform.position + new Vector3(direction.x, 0, direction.y) * distance;
+
+        float timeElapsed = 0;
+        while (timeElapsed < duration)
+        {
+            Vector3.Lerp(transform.position, targetPosition, lerpFactor * Time.deltaTime);
+            yield return null;
+            timeElapsed += Time.deltaTime;
+        }
     }
 }
