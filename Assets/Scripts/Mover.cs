@@ -32,16 +32,6 @@ public class Mover : MonoBehaviour
         effectiveMoveCapsuleCastHeight = (hostCapsuleCollider.height / 2 - moveCapsuleCastRadius) * transform.lossyScale.y;
     }
 
-    private void OnEnable()
-    {
-        PlayerInputHandler.Instance.OnMoveInput += ResolveMoveInput;
-    }
-
-    private void OnDisable()
-    {
-        PlayerInputHandler.Instance.OnMoveInput -= ResolveMoveInput;
-    }
-
     //Evaluates whether the movement will be obstructed via collision, then executes unobstructed movement.
     private void Update()
     {
@@ -99,7 +89,7 @@ public class Mover : MonoBehaviour
         this.isLocked = isLocked;
     }
 
-    private void ResolveMoveInput(Vector2 vector)
+    public void ResolveMoveInput(Vector2 vector)
     {
         forwardMovementDirection = vector.x;
 

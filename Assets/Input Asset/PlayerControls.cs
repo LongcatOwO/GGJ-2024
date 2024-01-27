@@ -125,6 +125,98 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PlayerTwo"",
+            ""id"": ""90e430ae-e348-4bb7-af14-a227c2e733c1"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""0e8aa4a7-4b9f-4544-987e-ad309ec1d62e"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""27ff5db2-2b01-4edd-8266-f70cac52cbf0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""b192863a-42a0-4e9f-86c8-d4c64bdb0ad4"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""67fb5c88-e20d-46cc-9ea3-288d92c6d52a"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""6af63259-f12b-45f2-bd99-5d9502576118"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""f1e380b6-beef-474d-b1bb-0e1e34afa291"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""e03bb748-33e0-414c-b155-52348887be99"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f72a7b7d-612a-4c56-85d3-945fd45f986d"",
+                    ""path"": ""<Keyboard>/numpad0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -133,6 +225,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_General = asset.FindActionMap("General", throwIfNotFound: true);
         m_General_Move = m_General.FindAction("Move", throwIfNotFound: true);
         m_General_Attack = m_General.FindAction("Attack", throwIfNotFound: true);
+        // PlayerTwo
+        m_PlayerTwo = asset.FindActionMap("PlayerTwo", throwIfNotFound: true);
+        m_PlayerTwo_Move = m_PlayerTwo.FindAction("Move", throwIfNotFound: true);
+        m_PlayerTwo_Attack = m_PlayerTwo.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -244,7 +340,66 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public GeneralActions @General => new GeneralActions(this);
+
+    // PlayerTwo
+    private readonly InputActionMap m_PlayerTwo;
+    private List<IPlayerTwoActions> m_PlayerTwoActionsCallbackInterfaces = new List<IPlayerTwoActions>();
+    private readonly InputAction m_PlayerTwo_Move;
+    private readonly InputAction m_PlayerTwo_Attack;
+    public struct PlayerTwoActions
+    {
+        private @PlayerControls m_Wrapper;
+        public PlayerTwoActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_PlayerTwo_Move;
+        public InputAction @Attack => m_Wrapper.m_PlayerTwo_Attack;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerTwo; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerTwoActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerTwoActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerTwoActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerTwoActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+        }
+
+        private void UnregisterCallbacks(IPlayerTwoActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+        }
+
+        public void RemoveCallbacks(IPlayerTwoActions instance)
+        {
+            if (m_Wrapper.m_PlayerTwoActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerTwoActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerTwoActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerTwoActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerTwoActions @PlayerTwo => new PlayerTwoActions(this);
     public interface IGeneralActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+    }
+    public interface IPlayerTwoActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);

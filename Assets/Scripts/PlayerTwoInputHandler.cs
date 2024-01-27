@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[DefaultExecutionOrder(-2)]
-public class PlayerInputHandler : MonoBehaviour
+[DefaultExecutionOrder(-1)]
+public class PlayerTwoInputHandler : MonoBehaviour
 {
     //This class invokes input events.
 
@@ -13,11 +13,9 @@ public class PlayerInputHandler : MonoBehaviour
     public event Action OnAttackInputDown;
     public event Action OnAttackInputUp;
 
-    public PlayerControls PlayerInputAsset { get { return playerInputAsset; } }
+    public static PlayerTwoInputHandler Instance;
 
-    public static PlayerInputHandler Instance;    
-
-    private PlayerControls playerInputAsset;    
+    private PlayerControls playerInputAsset;
 
     private void Awake()
     {
@@ -31,30 +29,20 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        if(playerInputAsset == null)
-        {
-            playerInputAsset = new PlayerControls();
-        }
+        playerInputAsset = PlayerInputHandler.Instance.PlayerInputAsset;
 
         SubscribePlayerInputEvents();
-
-        playerInputAsset.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerInputAsset.Disable();
     }
 
     private void SubscribePlayerInputEvents()
     {
-        playerInputAsset.General.Move.performed += ResolveMoveDown;
+        playerInputAsset.PlayerTwo.Move.performed += ResolveMoveDown;
 
-        playerInputAsset.General.Move.canceled += ResolveMoveInputUp;
+        playerInputAsset.PlayerTwo.Move.canceled += ResolveMoveInputUp;
 
-        playerInputAsset.General.Attack.started += ResolveAttackInput;
+        playerInputAsset.PlayerTwo.Attack.started += ResolveAttackInput;
 
-        playerInputAsset.General.Attack.canceled += ResolveAttackInputCancelled;
+        playerInputAsset.PlayerTwo.Attack.canceled += ResolveAttackInputCancelled;
     }
 
     private void ResolveAttackInputCancelled(InputAction.CallbackContext context)

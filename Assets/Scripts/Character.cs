@@ -11,6 +11,9 @@ public class Character : MonoBehaviour
     [SerializeField] private Mover mover;
     [SerializeField] private SlamAttackExecutor slamAttackExecutor;
 
+    [Header("Player Propertiers")]
+    [SerializeField] private bool isSecondaryPlayer;
+
     private SlammingWeapon wieldedMeleeWeapon;
 
     private void OnEnable()
@@ -20,8 +23,17 @@ public class Character : MonoBehaviour
         slamAttackExecutor.OnSlamEnded += UnlockMovement;
 
         slamAttackExecutor.OnSlamCancelled += UnlockMovement;
+
+        if (!isSecondaryPlayer)
+        {
+            PlayerInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
+        }
+        else
+        {
+            PlayerTwoInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
+        }
     }
-    
+
     private void OnDisable()
     {
         slamAttackExecutor.OnSlamInitiated -= LockMovement;
@@ -29,6 +41,15 @@ public class Character : MonoBehaviour
         slamAttackExecutor.OnSlamEnded -= UnlockMovement;
 
         slamAttackExecutor.OnSlamCancelled -= UnlockMovement;
+
+        if (!isSecondaryPlayer)
+        {
+            PlayerInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
+        }
+        else
+        {
+            PlayerTwoInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
+        }
     }
 
     public void PickupWeapon(SlammingWeapon weapon)
