@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 7512806243160602025}
   - component: {fileID: 5594517728252898328}
   - component: {fileID: 3612591105728691180}
+  - component: {fileID: 8868067912243423842}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -218,6 +219,7 @@ MonoBehaviour:
   mover: {fileID: 8570939156731612349}
   slamAttackExecutor: {fileID: 8895455194037387657}
   weaponSlot: {fileID: 5515463556031074646}
+  isSecondaryPlayer: 0
 --- !u!114 &5594517728252898328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,6 +242,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 635f89660c2139ef2a9b062ac1d89758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8868067912243423842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500451846505626296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d29f4e0a4ad990e3a1a61d7dbfac943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3782005908977950779

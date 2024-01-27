@@ -24,15 +24,6 @@ public class Character : MonoBehaviour
         slamAttackExecutor.OnSlamEnded += UnlockMovement;
 
         slamAttackExecutor.OnSlamCancelled += UnlockMovement;
-
-        if (!isSecondaryPlayer)
-        {
-            PlayerInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
-        }
-        else
-        {
-          //  PlayerTwoInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
-        }
     }
 
     private void OnDisable()
@@ -42,15 +33,6 @@ public class Character : MonoBehaviour
         slamAttackExecutor.OnSlamEnded -= UnlockMovement;
 
         slamAttackExecutor.OnSlamCancelled -= UnlockMovement;
-
-        if (!isSecondaryPlayer)
-        {
-            PlayerInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
-        }
-        else
-        {
-         //   PlayerTwoInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
-        }
     }
 
     public void PickupWeapon(SlammingWeapon weapon)
@@ -76,5 +58,10 @@ public class Character : MonoBehaviour
     public void UnlockMovement()
     {
         mover.SetMovementLock(false);
+    }
+
+    public SlamAttackExecutor GetSlamAttackExecutor()
+    {
+        return slamAttackExecutor;
     }
 }
