@@ -15,6 +15,7 @@ public class PlayerInputHandler : MonoBehaviour
     public event Action OnAttackInputDown;
     public event Action OnAttackInputUp;
     public event Action OnPickupInput;
+    public event Action OnChangeTargetInput;
     
     public event Action<Vector2> OnPlayerTwoMoveInput;
     public event Action OnPlayerTwoAttackInputDown;
@@ -66,6 +67,13 @@ public class PlayerInputHandler : MonoBehaviour
         playerInputAsset.General.Attack.canceled += ResolveAttackInputCancelled;
 
         playerInputAsset.General.Pickup.performed += ResolvePickup;
+
+        playerInputAsset.General.ChangeTarget.performed += ResolveChangeTargetInput;
+    }
+
+    private void ResolveChangeTargetInput(InputAction.CallbackContext context)
+    {
+        OnChangeTargetInput?.Invoke();
     }
 
     private void ResolveAttackInputCancelled(InputAction.CallbackContext context)
