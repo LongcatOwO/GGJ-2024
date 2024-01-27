@@ -9,8 +9,9 @@ public class Mover : MonoBehaviour
 
     [SerializeField] private float moveSpeed;
 
+    private bool isLocked;
     private float forwardMovement;
-    private float sideMovement;
+    private float sideMovement;    
 
     private void OnEnable()
     {
@@ -24,6 +25,11 @@ public class Mover : MonoBehaviour
 
     private void Update()
     {
+        if (isLocked)
+        {
+            return;
+        }
+
         if (forwardMovement != 0)
         {
             transform.position += Mathf.Sign(forwardMovement) * moveSpeed * Time.deltaTime * transform.right;
@@ -35,9 +41,14 @@ public class Mover : MonoBehaviour
         }
     }
 
+    public void SetMovementLock(bool isLocked)
+    {
+        this.isLocked = isLocked;
+    }
+
     private void ResolveMoveInput(Vector2 vector)
     {
-       forwardMovement = vector.x;
+        forwardMovement = vector.x;
 
         sideMovement = vector.y;
     }

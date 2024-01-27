@@ -15,7 +15,7 @@ public class SlammingWeapon : MonoBehaviour
     [Header("Hit Properties")]
     [SerializeField] private float slamMagnitude;
 
-    private SlammableTarget hitTarget;
+    private GameObject hitTargetGameObject;
 
     private void Start()
     {
@@ -45,16 +45,16 @@ public class SlammingWeapon : MonoBehaviour
     //If a viable target enters the weapon's collider, trigger the hit effect.
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out SlammableTarget target))
+        if (other.GetComponent<Character>() != null || other.GetComponent<SlammableTarget>() != null)
         {
-            if(hitTarget == target)
+            if(hitTargetGameObject == other.gameObject)
             {
                 return;
             }
 
-            hitTarget = target;
+            hitTargetGameObject = other.gameObject;
 
-            hitTarget.transform.position += Vector3.down * slamMagnitude;
+            hitTargetGameObject.transform.position += Vector3.down * slamMagnitude;
         }
     }
 
@@ -79,6 +79,6 @@ public class SlammingWeapon : MonoBehaviour
     {
         weaponCollider.enabled = false;
 
-        hitTarget = null;
+        hitTargetGameObject = null;
     }
 }
