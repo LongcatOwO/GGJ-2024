@@ -30,7 +30,7 @@ public class Character : MonoBehaviour
         }
         else
         {
-            PlayerTwoInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
+          //  PlayerTwoInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
         }
     }
 
@@ -48,7 +48,7 @@ public class Character : MonoBehaviour
         }
         else
         {
-            PlayerTwoInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
+         //   PlayerTwoInputHandler.Instance.OnMoveInput += mover.ResolveMoveInput;
         }
     }
 
