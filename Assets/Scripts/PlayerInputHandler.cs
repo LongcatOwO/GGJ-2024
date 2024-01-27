@@ -7,9 +7,12 @@ using UnityEngine.InputSystem;
 [DefaultExecutionOrder(-1)]
 public class PlayerInputHandler : MonoBehaviour
 {
+    //This class invokes input events.
+
     public event Action<Vector2> OnMoveInput;
     public event Action OnAttackInputDown;
     public event Action OnAttackInputUp;
+    public event Action OnPickupInput;
 
     public static PlayerInputHandler Instance;
 
@@ -51,6 +54,8 @@ public class PlayerInputHandler : MonoBehaviour
         playerInputAsset.General.Attack.started += ResolveAttackInput;
 
         playerInputAsset.General.Attack.canceled += ResolveAttackInputCancelled;
+
+        playerInputAsset.General.Pickup.performed += ResolvePickup;
     }
 
     private void ResolveAttackInputCancelled(InputAction.CallbackContext context)
@@ -71,5 +76,10 @@ public class PlayerInputHandler : MonoBehaviour
     private void ResolveMoveDown(InputAction.CallbackContext context)
     {
         OnMoveInput?.Invoke(context.ReadValue<Vector2>());
+    }
+
+    private void ResolvePickup(InputAction.CallbackContext context)
+    {
+        OnPickupInput?.Invoke();
     }
 }

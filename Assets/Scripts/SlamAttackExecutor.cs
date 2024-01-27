@@ -3,10 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackExecutor : MonoBehaviour
+public class SlamAttackExecutor : MonoBehaviour
 {
+    //This class handlers the attack animation of melee "slammable" weapons.
+
+    public event Action OnSlamInitiated;
     public event Action<float> OnSlamMagnitudeExecuted;
     public event Action OnSlamEnded;
+    public event Action OnSlamCancelled;
 
     [SerializeField] private Animator animator;
     [SerializeField] private SlammingWeapon weapon;
@@ -46,12 +50,18 @@ public class AttackExecutor : MonoBehaviour
             {
                 OnSlamMagnitudeExecuted?.Invoke((1 - slamProgress) * slamMagnitudeMultiplier);
             }
+            else
+            {
+                OnSlamCancelled?.Invoke();
+            }
         }
         else if(animator.GetBool("isSlammingWeapon"))
         {
             animator.Play("Character_Idle");
 
             animator.SetBool("isSlammingWeapon", false);
+
+            OnSlamCancelled?.Invoke();
         }
     }
 
@@ -62,6 +72,8 @@ public class AttackExecutor : MonoBehaviour
             animator.SetBool("isSlammingWeapon", true);
 
             animator.SetTrigger("raiseWeaponTrigger");
+
+            OnSlamInitiated?.Invoke();
         }
     }
 }
