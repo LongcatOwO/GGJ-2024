@@ -1,5 +1,5 @@
-# [TODO Game name]Whack Arena for Global Game Jam 2024
+# Zodi-ack!! for Global Game Jam 2024
 
-[TODO Game description]Whack your opponents with the power of the Zodiacs
+Whack your opponents with the power of the Zodiacs
 
-Playable WebGL build here: [TODO web link]
+Playable WebGL build here: https://sylky.itch.io/zodi-ack
