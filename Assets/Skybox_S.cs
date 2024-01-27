@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skybox : MonoBehaviour
+public class Skybox_S : MonoBehaviour
 {
     public Color topColor = Color.blue;
     public Color bottomColor = Color.white;

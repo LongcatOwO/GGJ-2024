@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 9009926890256143292}
   - component: {fileID: 2825457897606763111}
   - component: {fileID: 2653337942971357003}
-  - component: {fileID: 3096438559689008858}
+  - component: {fileID: -2002519612181570171}
   m_Layer: 7
   m_Name: WeaponDroppedForm
   m_TagString: Untagged
@@ -161,7 +161,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3096438559689008858
+--- !u!114 &-2002519612181570171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,9 +170,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7368531046167162817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e484cbc09cb26eada3aaa585012bd0a, type: 3}
+  m_Script: {fileID: 11500000, guid: c7720169788abab49a04670093b49d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  axis: 0
+  inverseFacingDirection: 0
 --- !u!1 &7785299545388716004
 GameObject:
   m_ObjectHideFlags: 0
