@@ -36,7 +36,12 @@ PrefabInstance:
     - target: {fileID: 3157604082554931761, guid: 3667623aa648a70298606e2ce21b2855,
         type: 3}
       propertyPath: m_Size.x
-      value: 3.87
+      value: 3.0234375
+      objectReference: {fileID: 0}
+    - target: {fileID: 3157604082554931761, guid: 3667623aa648a70298606e2ce21b2855,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 3157604082554931761, guid: 3667623aa648a70298606e2ce21b2855,
         type: 3}
@@ -52,7 +57,7 @@ PrefabInstance:
     - target: {fileID: 7368531046167162817, guid: 3667623aa648a70298606e2ce21b2855,
         type: 3}
       propertyPath: m_Name
-      value: Taurus
+      value: TaurusPickup
       objectReference: {fileID: 0}
     - target: {fileID: 9009926890256143292, guid: 3667623aa648a70298606e2ce21b2855,
         type: 3}
