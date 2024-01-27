@@ -7,36 +7,29 @@ public class Character : MonoBehaviour
 {
     //This class defines the host game object as a character and as a result, can be "slammed".
 
-    public bool IsSecondaryPlayer { get { return isSecondaryPlayer; } }
-
     [Header("Component References")]
     [SerializeField] private Mover mover;
-    [SerializeField] private SlamAttackExecutor slamAttackExecutor;
+    [SerializeField] private SlamAttackExecuter slamAttacker;
     [SerializeField] private Transform weaponSlot;
-
-    [Header("Player Properties")]
-    [SerializeField] private bool isSecondaryPlayer;
 
     private SlammingWeapon wieldedMeleeWeapon;
 
-    
-
     private void OnEnable()
     {
-        slamAttackExecutor.OnSlamInitiated += LockMovement;
+        slamAttacker.OnSlamInitiated += LockMovement;
 
-        slamAttackExecutor.OnSlamEnded += UnlockMovement;
+        slamAttacker.OnSlamEnded += UnlockMovement;
 
-        slamAttackExecutor.OnSlamCancelled += UnlockMovement;
+        slamAttacker.OnSlamCancelled += UnlockMovement;
     }
 
     private void OnDisable()
     {
-        slamAttackExecutor.OnSlamInitiated -= LockMovement;
+        slamAttacker.OnSlamInitiated -= LockMovement;
 
-        slamAttackExecutor.OnSlamEnded -= UnlockMovement;
+        slamAttacker.OnSlamEnded -= UnlockMovement;
 
-        slamAttackExecutor.OnSlamCancelled -= UnlockMovement;
+        slamAttacker.OnSlamCancelled -= UnlockMovement;
     }
 
     public void PickupWeapon(SlammingWeapon weapon)

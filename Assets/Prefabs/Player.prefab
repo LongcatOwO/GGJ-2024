@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mover: {fileID: 8570939156731612349}
-  slamAttackExecutor: {fileID: 8895455194037387657}
+  slamAttacker: {fileID: 8895455194037387657}
   weaponSlot: {fileID: 5515463556031074646}
 --- !u!114 &3612591105728691180
 MonoBehaviour:
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d29f4e0a4ad990e3a1a61d7dbfac943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSecondaryCharacter: 0
+  isSecondaryPlayer: 0
 --- !u!1 &3782005908977950779
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Info>k__BackingField: {fileID: 0}
-  attackExecutor: {fileID: 8895455194037387657}
+  slamAttacker: {fileID: 0}
   hostCollider: {fileID: 7687244271958224670}
   weaponCollider: {fileID: 3763791424216913053}
   slamMagnitude: 0

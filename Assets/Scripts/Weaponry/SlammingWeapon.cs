@@ -10,7 +10,7 @@ public class SlammingWeapon : MonoBehaviour
     [field: SerializeField] public WeaponInfo Info { get; private set; }
 
     [Header("Component References")]
-    [SerializeField] private SlamAttackExecutor attackExecutor;
+    [SerializeField] private SlamAttackExecuter slamAttacker;
     [SerializeField] private Collider hostCollider;
     [SerializeField] private Collider weaponCollider;
 
@@ -58,23 +58,23 @@ public class SlammingWeapon : MonoBehaviour
 
     private void SubscribeAttackExecutorEvents()
     {
-        if (attackExecutor == null) return;
-        attackExecutor.OnSlamMagnitudeExecuted += InitializeAttack;
-        attackExecutor.OnSlamEnded += EndAttack;
+        if (slamAttacker == null) return;
+        slamAttacker.OnSlamMagnitudeExecuted += InitializeAttack;
+        slamAttacker.OnSlamEnded += EndAttack;
     }
 
     private void UnsubscribeAttackExecutorEvents()
     {
-        if (attackExecutor == null) return;
-        attackExecutor.OnSlamMagnitudeExecuted -= InitializeAttack;
-        attackExecutor.OnSlamEnded -= EndAttack;
+        if (slamAttacker == null) return;
+        slamAttacker.OnSlamMagnitudeExecuted -= InitializeAttack;
+        slamAttacker.OnSlamEnded -= EndAttack;
     }
 
     //Initializes the weapon's component references.
     public void InitializeWeapon(GameObject hostGameObject)
     {
         hostCollider = hostGameObject.GetComponent<Collider>();
-        attackExecutor = hostGameObject.GetComponentInChildren<SlamAttackExecutor>();
+        slamAttacker = hostGameObject.GetComponentInChildren<SlamAttackExecuter>();
         SubscribeAttackExecutorEvents();
     }
 
