@@ -13,21 +13,22 @@ public class CombatantAI : MonoBehaviour
     [SerializeField] private ProximityCharacterDetector proximityDetector;
     [SerializeField] private GroundingChecker groundingChecker;
 
-    [Header("Move Properties")]    
-    [SerializeField] private float moveSpeed;
-
     [Header("Target Properties")]
     [SerializeField] private Character targetCharacter;
 
-    [SerializeField] private CombatantBehaviour activeBehaviour;
-    [SerializeField] private bool isAttacking;
-    private float attackRecoveryRequiredTime;
+    [Header("Movement Properties")]    
+    [SerializeField] private float moveSpeed;
 
-    [Header("Attack Time Properties")]
-    [SerializeField] private float minWeaponChargeTime = 0.30f;
-    [SerializeField] private float maxWeaponChargeTime = 1.1f;
-    [SerializeField] private float minAttackRecoveryTime = 0.2f;
-    [SerializeField] private float maxAttackRecoveryTime = 1f;
+    [Header("Attack Properties")]
+    [SerializeField] private Vector2 weaponChargeTimeRandomRange = new Vector2(0.30f, 1.1f);
+
+    [Header("Recovery Time")]
+    [SerializeField] private Vector2 attackRecoveryTimeRandomRange = new Vector2(0.2f, 2f);
+
+    private CombatantBehaviour activeBehaviour;
+    private bool isAttacking;
+    //The time required to "recover" from executing an attack to carrying out the next action.
+    private float attackRecoveryTime;
 
     private void Start()
     {
@@ -58,18 +59,29 @@ public class CombatantAI : MonoBehaviour
 
     private void Update()
     {
-        if(targetCharacter == null && activeBehaviour != CombatantBehaviour.Idle)
+        //Check to see if there is a viable target. If not, set the combatant's active behaviour to idle.
+        if (targetCharacter == null && activeBehaviour != CombatantBehaviour.Idle)
         {
             activeBehaviour = CombatantBehaviour.Idle;
 
             return;
         }
-
+        
+        //If the combatant is not grounded OR is attacking, skip resolving for its active behaviour until it is not.
         if (!groundingChecker.IsGrounded || isAttacking)
         {
             return;
         }
 
+        //If the combatant is still recovering from carrying out an attack, skip resolving for its active behaviour.
+        if (attackRecoveryTime > 0)
+        {
+            attackRecoveryTime -= Time.deltaTime;
+
+            return;
+        }        
+
+        //Resolve for the the combatant's active behaviour.
         switch (activeBehaviour)
         {
             case CombatantBehaviour.Idle:
@@ -85,13 +97,6 @@ public class CombatantAI : MonoBehaviour
                 {
                     if (!isAttacking)
                     {
-                        if (attackRecoveryRequiredTime > 0)
-                        {
-                            attackRecoveryRequiredTime -= Time.deltaTime;
-
-                            return;
-                        }
-
                         isAttacking = true;
 
                         attackEvents.StartWeaponCharge();
@@ -131,7 +136,7 @@ public class CombatantAI : MonoBehaviour
 
     private IEnumerator ExecuteWeaponAttackAtRandomCharge()
     {
-        float randomChargeTime = UnityEngine.Random.Range(minWeaponChargeTime, maxWeaponChargeTime);
+        float randomChargeTime = UnityEngine.Random.Range(weaponChargeTimeRandomRange.x, weaponChargeTimeRandomRange.y);
 
         float elapsedTime = 0f;
 
@@ -144,7 +149,7 @@ public class CombatantAI : MonoBehaviour
 
         attackEvents.ExecuteWeaponAttack();
 
-        attackRecoveryRequiredTime = UnityEngine.Random.Range(minAttackRecoveryTime, maxAttackRecoveryTime);
+        attackRecoveryTime = UnityEngine.Random.Range(attackRecoveryTimeRandomRange.x, attackRecoveryTimeRandomRange.y);
     }
 
     private void ResolveAttackEnd()
