@@ -32,22 +32,25 @@ public class BillboardToCamera : MonoBehaviour
         {
             case BillboardRotationAxis.Horizontal:
                 {
-                    billboardRotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(billboardDirection, Vector3.up));
+                    Vector3 horizontalFacingDirection = Vector3.ProjectOnPlane(billboardDirection, Vector3.up);
+
+                    billboardRotation = Quaternion.LookRotation(horizontalFacingDirection);
                 }
                 break;
             case BillboardRotationAxis.Vertical:
                 {
-                    billboardRotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(billboardDirection, Vector3.forward));
+                    Vector3 verticalFacingDirection = Vector3.ProjectOnPlane(billboardDirection, Vector3.forward);
+
+                    billboardRotation = Quaternion.LookRotation(verticalFacingDirection);
                 }
                 break;
             default:
                 {
                     if (inverseFacingDirection)
                     {
-                        billboardRotation = Quaternion.Euler(
-                            new Vector3(activeCamera.transform.rotation.eulerAngles.x + 180,
-                            activeCamera.transform.rotation.eulerAngles.y + 180,
-                            activeCamera.transform.rotation.eulerAngles.z + 180));
+                        Vector3 facingDirection = Vector3.ProjectOnPlane(billboardDirection, Vector3.up) + Vector3.ProjectOnPlane(billboardDirection, Vector3.forward);
+
+                        billboardRotation = Quaternion.LookRotation(facingDirection);
                     }
                     else
                     {

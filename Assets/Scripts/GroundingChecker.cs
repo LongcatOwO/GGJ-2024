@@ -21,7 +21,6 @@ public class GroundingChecker : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log(hostCapsuleCollider);
         effectiveSphereCastRadius = hostCapsuleCollider.radius * Mathf.Max(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
 
         effectiveSphereCastDistance = hostCapsuleCollider.height / 2 * transform.lossyScale.y + groundCheckError -effectiveSphereCastRadius;

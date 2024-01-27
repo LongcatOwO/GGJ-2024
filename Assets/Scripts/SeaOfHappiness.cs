@@ -11,7 +11,7 @@ public class SeaOfHappiness : MonoBehaviour
         GameObject scoreObject = GameObject.Find("ScoreObj");
 
         //player 1 scores
-        if (other.gameObject.GetComponent<Character>().isSecondaryPlayer)
+        if (other.gameObject.GetComponent<Character>().IsSecondaryPlayer)
         {
             scoreObject.GetComponent<Score>().Player1Score++;
 

@@ -3,37 +3,70 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Character))]
-[RequireComponent(typeof(IPlayerInputHandler))]
 [RequireComponent(typeof(Mover))]
 [RequireComponent(typeof(WeaponPicker))]
 public class PlayerController : MonoBehaviour
 {
-    Character _character;
-    IPlayerInputHandler _inputHandler;
+    [SerializeField] private bool isSecondaryCharacter;
+
     Mover _mover;
     WeaponPicker _weaponPicker;
+    private SlamAttackExecutor slamAttackExecutor;
 
     void Awake()
     {
-        _character = GetComponent<Character>();
-        _inputHandler = GetComponent<IPlayerInputHandler>();
+        slamAttackExecutor = GetComponentInChildren<SlamAttackExecutor>();
+
         _mover = GetComponent<Mover>();
+
         _weaponPicker = GetComponent<WeaponPicker>();
     }
 
     void OnEnable()
     {
-        _inputHandler.OnMoveInput += _mover.ResolveMoveInput;
-        _inputHandler.OnPickupInput += _weaponPicker.Pickup;
-        _inputHandler.OnAttackInputDown += _character.GetSlamAttackExecutor().RaiseWeapon;
-        _inputHandler.OnAttackInputUp += _character.GetSlamAttackExecutor().SlamWeapon;
+        if (!isSecondaryCharacter)
+        {
+            PlayerInputHandler.Instance.OnMoveInput += _mover.ResolveMoveInput;
+
+            PlayerInputHandler.Instance.OnPickupInput += _weaponPicker.Pickup;
+
+            PlayerInputHandler.Instance.OnAttackInputDown += slamAttackExecutor.RaiseWeapon;
+
+            PlayerInputHandler.Instance.OnAttackInputUp += slamAttackExecutor.SlamWeapon;
+        }
+        else
+        {
+            PlayerInputHandler.Instance.OnPlayerTwoMoveInput += _mover.ResolveMoveInput;
+
+            PlayerInputHandler.Instance.OnPlayerTwoPickupInput += _weaponPicker.Pickup;
+
+            PlayerInputHandler.Instance.OnPlayerTwoAttackInputDown += slamAttackExecutor.RaiseWeapon;
+
+            PlayerInputHandler.Instance.OnPlayerTwoAttackInputUp += slamAttackExecutor.SlamWeapon;
+        }
     }
 
     void OnDisable()
     {
-        _inputHandler.OnMoveInput -= _mover.ResolveMoveInput;
-        _inputHandler.OnPickupInput -= _weaponPicker.Pickup;
-        _inputHandler.OnAttackInputDown -= _character.GetSlamAttackExecutor().RaiseWeapon;
-        _inputHandler.OnAttackInputUp -= _character.GetSlamAttackExecutor().SlamWeapon;
+        if (!isSecondaryCharacter)
+        {
+            PlayerInputHandler.Instance.OnMoveInput -= _mover.ResolveMoveInput;
+
+            PlayerInputHandler.Instance.OnPickupInput -= _weaponPicker.Pickup;
+
+            PlayerInputHandler.Instance.OnAttackInputDown -= slamAttackExecutor.RaiseWeapon;
+
+            PlayerInputHandler.Instance.OnAttackInputUp -= slamAttackExecutor.SlamWeapon;
+        }
+        else
+        {
+            PlayerInputHandler.Instance.OnPlayerTwoMoveInput -= _mover.ResolveMoveInput;
+
+            PlayerInputHandler.Instance.OnPlayerTwoPickupInput -= _weaponPicker.Pickup;
+
+            PlayerInputHandler.Instance.OnPlayerTwoAttackInputDown -= slamAttackExecutor.RaiseWeapon;
+
+            PlayerInputHandler.Instance.OnPlayerTwoAttackInputUp -= slamAttackExecutor.SlamWeapon;
+        }
     }
 }
