@@ -6,21 +6,22 @@ using UnityEngine.SceneManagement;
 public class SeaOfHappiness : MonoBehaviour
 {
     //This class acts to destroy all objects the enters its collider, sending them to "a happy place".
+
+    [SerializeField] private Score scoreComponent;
+
     private void OnTriggerEnter(Collider other)
     {
-        GameObject scoreObject = GameObject.Find("ScoreObj");
-
         if(other.gameObject.TryGetComponent(out PlayerController playerController))
         {
             //player 1 scores
             if (playerController.IsSecondaryPlayer)
             {
-                scoreObject.GetComponent<Score>().Player1Score++;
+                scoreComponent.Player1Score++;
             }
             //player 2 scores
             else
             {
-                scoreObject.GetComponent<Score>().Player2Score++;
+                scoreComponent.Player2Score++;
             }
         }
 
