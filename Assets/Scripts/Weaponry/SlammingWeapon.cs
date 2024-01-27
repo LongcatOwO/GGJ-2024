@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
 public class SlammableWeapon : MonoBehaviour
 {
     //This class handles the activation of the "slamming weapon" as well as its hit effects.
@@ -28,8 +27,6 @@ public class SlammableWeapon : MonoBehaviour
 
     private void Start()
     {
-        weaponCollider = GetComponent<Collider>();
-
         Physics.IgnoreCollision(hostCollider, weaponCollider);
 
         weaponCollider.enabled = false;
@@ -50,6 +47,7 @@ public class SlammableWeapon : MonoBehaviour
     //If a viable target enters the weapon's collider, trigger the hit effect.
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("TriggerEnter");
         if (other.GetComponent<Character>() != null || other.GetComponent<SlammableTarget>() != null)
         {
             if(hitTargetGameObject == other.gameObject)
@@ -60,7 +58,7 @@ public class SlammableWeapon : MonoBehaviour
             hitTargetGameObject = other.gameObject;
 
             hitTargetGameObject.transform.position += Vector3.down * slamForce * buryPotential;
-            OnSlamHit?.Invoke();
+            OnSlamHit?.Invoke(other);
         }
     }
 
