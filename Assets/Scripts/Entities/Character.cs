@@ -46,7 +46,10 @@ public class Character : MonoBehaviour
     {
         if(wieldedMeleeWeapon != null)
         {
-            Instantiate(weapon.Info.PickupForm, transform.position, Quaternion.identity);
+            if(wieldedMeleeWeapon.Info != null)
+            {
+                Instantiate(wieldedMeleeWeapon.Info.PickupForm, transform.position, Quaternion.identity);
+            }            
 
             Destroy(wieldedMeleeWeapon.gameObject);
         }
