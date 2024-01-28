@@ -75,7 +75,7 @@ MonoBehaviour:
   attackEvents: {fileID: 0}
   hostCollider: {fileID: 0}
   weaponCollider: {fileID: 9121709422857925262}
-  buryPotential: 0
+  buryPotential: 0.1
 --- !u!54 &-3789887278078823884
 Rigidbody:
   m_ObjectHideFlags: 0
