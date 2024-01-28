@@ -47,7 +47,6 @@ public class SlammableWeapon : MonoBehaviour
     //If a viable target enters the weapon's collider, trigger the hit effect.
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("TriggerEnter");
         if (other.GetComponent<Character>() != null || other.GetComponent<SlammableTarget>() != null)
         {
             if(hitTargetGameObject == other.gameObject)

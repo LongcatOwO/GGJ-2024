@@ -14,6 +14,9 @@ public class SpawnWeaponOnHit : MonoBehaviour
     [SerializeField]
     private int _spawnCount;
 
+    [SerializeField]
+    private float _spawnHeightOffset;
+
     private SlammableWeapon _weapon;
 
     private void Awake()
@@ -29,8 +32,8 @@ public class SpawnWeaponOnHit : MonoBehaviour
             int rand = Random.Range(0, _weaponList.weaponInfos.Length);
             float angle = Random.Range(0.0f, 360.0f);
             Vector3 offset = Quaternion.AngleAxis(angle, Vector3.up) * new Vector3(_spawnRadius, 0, 0);
-            Vector3 position = collider.transform.position + offset;
-            Instantiate(_weaponList.weaponInfos[rand].PickupForm, offset, Quaternion.identity);
+            Vector3 position = collider.transform.position + offset + new Vector3(0, _spawnHeightOffset);
+            Instantiate(_weaponList.weaponInfos[rand].PickupForm, position, Quaternion.identity);
         }
     }
 }
