@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class SlammableWeapon : MonoBehaviour
 {
     //This class handles the activation of the "slamming weapon" as well as its hit effects.
@@ -27,9 +28,15 @@ public class SlammableWeapon : MonoBehaviour
 
     private void Start()
     {
-        Physics.IgnoreCollision(hostCollider, weaponCollider);
+        if(weaponCollider == null)
+        {
+            weaponCollider = GetComponent<Collider>();
+        }
 
-        weaponCollider.enabled = false;
+        if(hostCollider != null)
+        {
+            Physics.IgnoreCollision(hostCollider, weaponCollider);
+        }
     }
 
     //Registers the events that will invoke the methods of this weapon.
@@ -57,6 +64,7 @@ public class SlammableWeapon : MonoBehaviour
             hitTargetGameObject = other.gameObject;
 
             hitTargetGameObject.transform.position += Vector3.down * slamForce * buryPotential;
+
             OnSlamHit?.Invoke(other);
         }
     }
@@ -80,11 +88,15 @@ public class SlammableWeapon : MonoBehaviour
     }
 
     //Initializes the weapon's component references.
-    public void InitializeWeapon(GameObject hostGameObject)
+    public void InitializeWeapon(GameObject hostGameObject, WeaponInfo weaponInfo)
     {
         hostCollider = hostGameObject.GetComponent<Collider>();
 
         attackEvents = hostGameObject.GetComponentInChildren<AttackAnimationEvents>();
+
+        Physics.IgnoreCollision(hostCollider, weaponCollider);
+
+        info = weaponInfo;
 
         SubscribeAttackExecutorEvents();
     }

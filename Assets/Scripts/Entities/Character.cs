@@ -15,8 +15,7 @@ public class Character : MonoBehaviour
     [SerializeField] private Transform weaponSlot;
     [SerializeField] private Animator animator;
 
-    private SlammableWeapon wieldedMeleeWeapon;
-    private new Rigidbody rigidbody;
+    [SerializeField] private SlammableWeapon wieldedMeleeWeapon;
 
     // @param direction[Vector2]
     // @param distance[float]
@@ -53,10 +52,10 @@ public class Character : MonoBehaviour
 
         wieldedMeleeWeapon = weapon;
 
-        wieldedMeleeWeapon.InitializeWeapon(gameObject);        
-
         wieldedMeleeWeapon.transform.SetParent(weaponSlot, false);
-
+        Debug.Log(weapon.transform.name);
+        Debug.Log(weapon.Info == null);
+        Debug.Log(weapon.Info.AnimatorController == null);
         animator.runtimeAnimatorController = weapon.Info.AnimatorController;
     }
 

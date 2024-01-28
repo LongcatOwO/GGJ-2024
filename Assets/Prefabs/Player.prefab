@@ -221,6 +221,7 @@ MonoBehaviour:
   attackEvents: {fileID: 8895455194037387657}
   weaponSlot: {fileID: 5515463556031074646}
   animator: {fileID: 7859859237943480916}
+  wieldedMeleeWeapon: {fileID: 5274270885361896205}
 --- !u!114 &3612591105728691180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,7 +358,7 @@ Transform:
   m_GameObject: {fileID: 6189207283038588926}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.2, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -544,7 +545,7 @@ Transform:
   m_GameObject: {fileID: 9154615342371918596}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -687,3 +688,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 602973119238293462}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5274270885361896205 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4715209120521686235, guid: 485e90ee8695cd14aa40625e3c25a12e,
+    type: 3}
+  m_PrefabInstance: {fileID: 602973119238293462}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc48f4a3e9793a44aa4e43e2e16eda64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
