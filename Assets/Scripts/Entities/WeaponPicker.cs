@@ -18,6 +18,7 @@ public class WeaponPicker : MonoBehaviour
     {
         if (_weaponInRange == null) return;
         var heldWeapon = Instantiate(_weaponInRange.Info.HeldForm).GetComponent<SlammableWeapon>();
+        heldWeapon.InitializeWeapon(_character.gameObject, _weaponInRange.Info);
         _character.PickupWeapon(heldWeapon);
         Destroy(_weaponInRange.gameObject);
         _weaponInRange = null;

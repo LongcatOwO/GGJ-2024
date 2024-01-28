@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class SlammableWeapon : MonoBehaviour
     //This class handles the activation of the "slamming weapon" as well as its hit effects.
 
     public WeaponInfo Info { get { return info; } }
+
+    public event Action<Collider> OnSlamHit;
 
     [Header("Weapon Reference")]
     [SerializeField] private WeaponInfo info;
@@ -61,6 +64,8 @@ public class SlammableWeapon : MonoBehaviour
             hitTargetGameObject = other.gameObject;
 
             hitTargetGameObject.transform.position += Vector3.down * slamForce * buryPotential;
+
+            OnSlamHit?.Invoke(other);
         }
     }
 
@@ -83,13 +88,15 @@ public class SlammableWeapon : MonoBehaviour
     }
 
     //Initializes the weapon's component references.
-    public void InitializeWeapon(GameObject hostGameObject)
+    public void InitializeWeapon(GameObject hostGameObject, WeaponInfo weaponInfo)
     {
         hostCollider = hostGameObject.GetComponent<Collider>();
 
         attackEvents = hostGameObject.GetComponentInChildren<AttackAnimationEvents>();
 
         Physics.IgnoreCollision(hostCollider, weaponCollider);
+
+        info = weaponInfo;
 
         SubscribeAttackExecutorEvents();
     }

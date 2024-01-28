@@ -222,6 +222,7 @@ MonoBehaviour:
   attackEvents: {fileID: 8895455194037387657}
   weaponSlot: {fileID: 5515463556031074646}
   animator: {fileID: 7859859237943480916}
+  wieldedMeleeWeapon: {fileID: 1761515951906974359}
 --- !u!114 &3612591105728691180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -709,3 +710,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6421535873258088012}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1761515951906974359 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4715209120521686235, guid: 485e90ee8695cd14aa40625e3c25a12e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6421535873258088012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc48f4a3e9793a44aa4e43e2e16eda64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -22,7 +22,16 @@ public class SpawnWeaponOnHit : MonoBehaviour
     private void Awake()
     {
         _weapon = GetComponent<SlammableWeapon>();
+    }
+
+    private void OnEnable()
+    {
         _weapon.OnSlamHit += SpawnWeapons;
+    }
+
+    private void OnDisable()
+    {
+        _weapon.OnSlamHit -= SpawnWeapons;
     }
 
     private void SpawnWeapons(Collider collider)
