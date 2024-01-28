@@ -15,8 +15,11 @@ public class Character : MonoBehaviour
     [SerializeField] private Transform weaponSlot;
     [SerializeField] private Animator animator;
 
+    [Header("Weapon Properties")]
     [SerializeField] private SlammableWeapon wieldedMeleeWeapon;
 
+    [Header("Weapon Pickup Properties")]
+    [SerializeField] private float pickupDropDistance;
     // @param direction[Vector2]
     // @param distance[float]
     // @param duration[float]
@@ -46,7 +49,10 @@ public class Character : MonoBehaviour
     {
         if(wieldedMeleeWeapon != null)
         {
-            Instantiate(weapon.Info.PickupForm, transform.position, Quaternion.identity);
+            if(wieldedMeleeWeapon.Info != null)
+            {
+                Instantiate(wieldedMeleeWeapon.Info.PickupForm, transform.position + Vector3.down * pickupDropDistance, Quaternion.identity);
+            }            
 
             Destroy(wieldedMeleeWeapon.gameObject);
         }
