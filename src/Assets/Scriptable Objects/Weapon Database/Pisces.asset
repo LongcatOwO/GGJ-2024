@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb841686dc3ba8c2af41ef49895ace1, type: 3}
+  m_Name: Pisces
+  m_EditorClassIdentifier: 
+  <HeldForm>k__BackingField: {fileID: 7119084222630565117, guid: d30836bcadcdc53af806441adf8e5433,
+    type: 3}
+  <PickupForm>k__BackingField: {fileID: 78481971098182666, guid: 41cde56687818a39ab1c19a0cafcf0ed,
+    type: 3}
+  <AnimatorController>k__BackingField: {fileID: 9100000, guid: fb13765e81505374d8cf56f05f525538,
+    type: 2}
