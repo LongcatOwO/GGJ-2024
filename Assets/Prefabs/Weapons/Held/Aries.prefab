@@ -69,6 +69,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a83f4dd48883777fa9ce1f6e317aeb62,
         type: 2}
+    - target: {fileID: 2461442546543558992, guid: 3f3b4d7743e0bbcf58176bfb0ee73407,
+        type: 3}
+      propertyPath: buryPotential
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2666506751802486867, guid: 3f3b4d7743e0bbcf58176bfb0ee73407,
         type: 3}
       propertyPath: m_Name
