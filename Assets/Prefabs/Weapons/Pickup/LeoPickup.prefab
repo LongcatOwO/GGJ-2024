@@ -28,6 +28,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2825457897606763111, guid: 3667623aa648a70298606e2ce21b2855,
+        type: 3}
+      propertyPath: <Info>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 74a00a86427cf1e34a4d0d8e806aa83b,
+        type: 2}
     - target: {fileID: 3157604082554931761, guid: 3667623aa648a70298606e2ce21b2855,
         type: 3}
       propertyPath: m_Size.x

@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <HeldForm>k__BackingField: {fileID: 2666506751802486867, guid: 3f3b4d7743e0bbcf58176bfb0ee73407,
     type: 3}
-  <DroppedForm>k__BackingField: {fileID: 7368531046167162817, guid: 3667623aa648a70298606e2ce21b2855,
-    type: 3}
+  <PickupForm>k__BackingField: {fileID: 0}
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: fb13765e81505374d8cf56f05f525538,
     type: 2}

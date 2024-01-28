@@ -5,12 +5,14 @@ using UnityEngine.Rendering;
 
 public class SpawnWeaponPickupSystem : MonoBehaviour
 {
-    [SerializeField] private DroppedWeapon[] availableDroppedWeapons;
+    [Header("Spawn Area Properties")]
     [SerializeField] private Transform spawnCentreTransform;
-    [SerializeField] private int weaponPickupsToSpawn = 15;
-
     [SerializeField] private float spawnAreaRadius;
     [SerializeField] private float spawnPositionHeight;
+
+    [Header("Pickup Spawn Properties")]
+    [SerializeField] private int weaponPickupsToSpawn = 15;
+    [SerializeField] private DroppedWeapon[] availableDroppedWeapons;
 
     List<DroppedWeapon> spawnedDroppedWeaponsList = new List<DroppedWeapon>();
 
