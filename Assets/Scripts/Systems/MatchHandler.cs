@@ -31,8 +31,13 @@ public class MatchHandler : MonoBehaviour
     [Header("Weapon Pickup Properties")]
     [SerializeField] private SpawnWeaponPickupSystem spawnPickupSystem;
 
+    [Header("Sound Effects")]
+    [SerializeField] private AudioSource roundStartSound;
+    [SerializeField] private AudioSource roundEndSound;
+
     private List<GameObject> activeGameObjects;
     private int remainingSlammableTargetCount;
+
 
     private void Awake()
     {
@@ -137,6 +142,8 @@ public class MatchHandler : MonoBehaviour
             activeGameObjects = null;
 
             spawnPickupSystem.ClearDroppedWeapons();
+
+            roundEndSound.Play();
 
             matchEndScreenGameObject.SetActive(true);
         }
@@ -274,5 +281,7 @@ public class MatchHandler : MonoBehaviour
         matchEndScreenGameObject.SetActive(false);
 
         spawnPickupSystem.SpawnDroppedPickups();
+
+        roundStartSound.Play();
     }
 }

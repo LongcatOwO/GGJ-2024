@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(SlammableWeapon))]
 public class PlaySoundOnHit : MonoBehaviour
 {
-    private AudioSource _audio;
+    [SerializeField] private AudioSource _onHitSound;
     private SlammableWeapon _weapon;
 
     private void Awake()
     {
-        _audio = GetComponent<AudioSource>();
+        _onHitSound = GetComponent<AudioSource>();
         _weapon = GetComponent<SlammableWeapon>();
     }
 
@@ -27,6 +26,6 @@ public class PlaySoundOnHit : MonoBehaviour
 
     private void PlaySound(Collider collider)
     {
-        _audio.Play(0);
+        _onHitSound.Play(0);
     }
 }
