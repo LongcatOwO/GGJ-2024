@@ -3949,6 +3949,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4d6e45757c2a54399e85e70b1890e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnCentreTransform: {fileID: 1561904882}
+  spawnAreaRadius: 4
+  spawnPositionHeight: 0.6
+  weaponPickupsToSpawn: 15
   availableDroppedWeapons:
   - {fileID: 7107307548584165858, guid: a592ea45b07f620a898726c909bbcf9d, type: 3}
   - {fileID: 4922555357411278066, guid: d2e7ab49e847c450497a5be2def04add, type: 3}
@@ -3962,11 +3966,6 @@ MonoBehaviour:
   - {fileID: 8193841835620602260, guid: e3b9f181c861a14149e62b81cabfa7a4, type: 3}
   - {fileID: 7927947846898841474, guid: 2c25a272204ead71889c23f74f2d174c, type: 3}
   - {fileID: 8981663487629300612, guid: a023319d5c624551ca25d483398f8dc2, type: 3}
-  - {fileID: 2825457897606763111, guid: 3667623aa648a70298606e2ce21b2855, type: 3}
-  spawnCentreTransform: {fileID: 1561904882}
-  weaponPickupsToSpawn: 15
-  spawnAreaRadius: 4
-  spawnPositionHeight: 0.6
 --- !u!1 &1561904881
 GameObject:
   m_ObjectHideFlags: 0

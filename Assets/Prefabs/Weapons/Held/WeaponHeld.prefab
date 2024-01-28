@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 24729634801368132}
   - component: {fileID: 9121709422857925262}
   - component: {fileID: 2461442546543558992}
-  - component: {fileID: 4954062288434243046}
-  - component: {fileID: 158622254235225857}
-  - component: {fileID: 8581981196172888267}
-  - component: {fileID: 5340375130432255767}
+  - component: {fileID: -3789887278078823884}
+  - component: {fileID: -7792848696134133863}
+  - component: {fileID: 1793380539957722842}
   m_Layer: 8
   m_Name: WeaponHeld
   m_TagString: Untagged
@@ -76,7 +75,7 @@ MonoBehaviour:
   hostCollider: {fileID: 0}
   weaponCollider: {fileID: 9121709422857925262}
   buryPotential: 0
---- !u!54 &4954062288434243046
+--- !u!54 &-3789887278078823884
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,23 +102,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &158622254235225857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2666506751802486867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ae9fc0af4ecaf57bba85249ac434ac9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponList: {fileID: 11400000, guid: 877b022e2cf8f43229e5fe82a24eac6a, type: 2}
-  _spawnRadius: 1
-  _spawnCount: 2
-  _spawnHeightOffset: 0
---- !u!82 &8581981196172888267
+--- !u!82 &-7792848696134133863
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,7 +113,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6394f973da4c9b3d98088e56f90db683, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -215,7 +198,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5340375130432255767
+--- !u!114 &1793380539957722842
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

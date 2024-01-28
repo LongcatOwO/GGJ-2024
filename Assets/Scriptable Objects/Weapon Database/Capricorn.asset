@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb841686dc3ba8c2af41ef49895ace1, type: 3}
   m_Name: Capricorn
   m_EditorClassIdentifier: 
-  <HeldForm>k__BackingField: {fileID: 0}
+  <HeldForm>k__BackingField: {fileID: 7119084222630565117, guid: 87bfd15d4f2b65c29a6a7904d6acc082,
+    type: 3}
   <PickupForm>k__BackingField: {fileID: 4102594711483579457, guid: 3b4d9262a4ca499538748abbb758710a,
     type: 3}
-  <AnimatorController>k__BackingField: {fileID: 0}
+  <AnimatorController>k__BackingField: {fileID: 9100000, guid: fb13765e81505374d8cf56f05f525538,
+    type: 2}

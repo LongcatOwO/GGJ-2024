@@ -47,15 +47,14 @@ public class Character : MonoBehaviour
         if(wieldedMeleeWeapon != null)
         {
             Instantiate(weapon.Info.PickupForm, transform.position, Quaternion.identity);
-            Destroy(wieldedMeleeWeapon);
+
+            Destroy(wieldedMeleeWeapon.gameObject);
         }
 
         wieldedMeleeWeapon = weapon;
 
         wieldedMeleeWeapon.transform.SetParent(weaponSlot, false);
-        Debug.Log(weapon.transform.name);
-        Debug.Log(weapon.Info == null);
-        Debug.Log(weapon.Info.AnimatorController == null);
+
         animator.runtimeAnimatorController = weapon.Info.AnimatorController;
     }
 
