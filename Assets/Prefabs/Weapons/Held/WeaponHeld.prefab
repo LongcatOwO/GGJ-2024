@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 24729634801368132}
   - component: {fileID: 9121709422857925262}
   - component: {fileID: 2461442546543558992}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WeaponHeld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,9 +49,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1.5, y: 0.96, z: 0.26}
   m_Center: {x: 0, y: 0, z: 0}

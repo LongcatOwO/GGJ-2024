@@ -15,11 +15,6 @@ public class MatchHandler : MonoBehaviour
 
     [Header("Component References")]
     [SerializeField] private CameraFocusPosition cameraFocuser;
-    [SerializeField] private GameObject tutorialScreenGameObject;
-    [SerializeField] private GameObject pVEScreenGameObject;
-    [SerializeField] private GameObject pVPScreenGameObject;
-    [SerializeField] private GameObject pVAIScreenGameObject;
-    [SerializeField] private GameObject aIVsAIScreenGameObject;
     [SerializeField] private GameObject matchEndScreenGameObject;
 
     [Header("Mode Properties")]
@@ -32,6 +27,9 @@ public class MatchHandler : MonoBehaviour
     [SerializeField] private float spawnAreaRadius;
     [SerializeField] private Vector2 spawnDistanceDifferenceAllowedRange = new Vector2(1.5f, 5f);
     [SerializeField] private float maximumDistancingAttemptCount = 10f;
+
+    [Header("Weapon Pickup Properties")]
+    [SerializeField] private SpawnWeaponPickupSystem spawnPickupSystem;
 
     private List<GameObject> activeGameObjects;
     private int remainingSlammableTargetCount;
@@ -58,45 +56,35 @@ public class MatchHandler : MonoBehaviour
 
     public void InitializeTutorial()
     {
-        matchEndScreenGameObject.SetActive(false);
-
-        tutorialScreenGameObject.SetActive(true);
+        InitializeNewMatch();
 
         activeGameObjects = InitializeCharacterWithTargets(playerPrefab, slammableTargetPrefab, 1);
     }
 
     public void InitializePvE()
     {
-        matchEndScreenGameObject.SetActive(false);
-
-        pVEScreenGameObject.SetActive(true);
+        InitializeNewMatch();
 
         activeGameObjects = InitializeCharacterWithTargets(playerPrefab, slammableTargetPrefab, targetsToSpawnInPVEMode);
     }
 
     public void InitializePvAi()
     {
-        matchEndScreenGameObject.SetActive(false);
-
-        pVAIScreenGameObject.SetActive(true);
+        InitializeNewMatch();
 
         activeGameObjects = InitializeCharacters(playerPrefab, combatantTwoPrefab);
     }
 
     public void InitializePvP()
     {
-        matchEndScreenGameObject.SetActive(false);
-
-        pVPScreenGameObject.SetActive(true);
+        InitializeNewMatch();
 
         activeGameObjects = InitializeCharacters(playerPrefab, playerTwoPrefab);
     }
 
     public void InitializeAiVsAi()
     {
-        matchEndScreenGameObject.SetActive(false);
-
-        aIVsAIScreenGameObject.SetActive(true);
+        InitializeNewMatch();
 
         activeGameObjects = InitializeCharacters(combatantOnePrefab, combatantTwoPrefab);
     }
@@ -148,30 +136,7 @@ public class MatchHandler : MonoBehaviour
 
             activeGameObjects = null;
 
-            if (tutorialScreenGameObject.activeSelf)
-            {
-                tutorialScreenGameObject.SetActive(false);
-            }
-
-            if (pVEScreenGameObject.activeSelf)
-            {
-                pVEScreenGameObject.SetActive(false);
-            }
-
-            if (pVPScreenGameObject.activeSelf)
-            {
-                pVPScreenGameObject.SetActive(false);
-            }
-
-            if (pVAIScreenGameObject.activeSelf)
-            {
-                pVAIScreenGameObject.SetActive(false);
-            }
-
-            if (aIVsAIScreenGameObject.activeSelf)
-            {
-                aIVsAIScreenGameObject.SetActive(false);
-            }
+            spawnPickupSystem.ClearDroppedWeapons();
 
             matchEndScreenGameObject.SetActive(true);
         }
@@ -183,7 +148,7 @@ public class MatchHandler : MonoBehaviour
 
         Vector2 randomPointInCircleOfSpawnAreaRadius = Random.insideUnitCircle * spawnAreaRadius;
 
-        Vector3 spawnPoint = spawnCentreTransform.position + new Vector3(randomPointInCircleOfSpawnAreaRadius.x, spawnPositionHeight, randomPointInCircleOfSpawnAreaRadius.y);
+        Vector3 spawnPoint = new Vector3(spawnCentreTransform.position.x + randomPointInCircleOfSpawnAreaRadius.x, spawnPositionHeight, spawnCentreTransform.position.z + randomPointInCircleOfSpawnAreaRadius.y);
 
         Character characterOne = Instantiate(characterOnePrefab, spawnPoint, characterOnePrefab.transform.rotation);
 
@@ -209,7 +174,7 @@ public class MatchHandler : MonoBehaviour
         }
         while ((distanceApartSquared < spawnMinimumDistanceDifferenceSquared || distanceApartSquared > spawnMaximumDistanceDifferenceSquared) && distancingAttempts <= maximumDistancingAttemptCount);
 
-        Vector3 secondSpawnPoint = spawnCentreTransform.position + new Vector3(secondRandomPointInCircleOfSpawnAreaRadius.x, spawnPositionHeight, secondRandomPointInCircleOfSpawnAreaRadius.y);
+        Vector3 secondSpawnPoint = new Vector3(spawnCentreTransform.position.x + secondRandomPointInCircleOfSpawnAreaRadius.x, spawnPositionHeight, spawnCentreTransform.position.z + secondRandomPointInCircleOfSpawnAreaRadius.y);
 
         Character characterTwo = Instantiate(characterTwoPrefab, secondSpawnPoint, characterTwoPrefab.transform.rotation);
 
@@ -236,7 +201,7 @@ public class MatchHandler : MonoBehaviour
 
         Vector2 randomPointInCircleOfSpawnAreaRadius = Random.insideUnitCircle * spawnAreaRadius;
 
-        Vector3 spawnPoint = spawnCentreTransform.position + new Vector3(randomPointInCircleOfSpawnAreaRadius.x, spawnPositionHeight, randomPointInCircleOfSpawnAreaRadius.y);
+        Vector3 spawnPoint = new Vector3(spawnCentreTransform.position.x + randomPointInCircleOfSpawnAreaRadius.x, spawnPositionHeight, spawnCentreTransform.position.z + randomPointInCircleOfSpawnAreaRadius.y);
 
         Character character = Instantiate(characterPrefab, spawnPoint, characterPrefab.transform.rotation);
 
@@ -264,7 +229,7 @@ public class MatchHandler : MonoBehaviour
             }
             while ((distanceApartSquared < spawnMinimumDistanceDifferenceSquared || distanceApartSquared > spawnMaximumDistanceDifferenceSquared) && distancingAttempts <= maximumDistancingAttemptCount);
 
-            Vector3 secondSpawnPoint = spawnCentreTransform.position + new Vector3(secondRandomPointInCircleOfSpawnAreaRadius.x, spawnPositionHeight, secondRandomPointInCircleOfSpawnAreaRadius.y);
+            Vector3 secondSpawnPoint = new Vector3(spawnCentreTransform.position.x + secondRandomPointInCircleOfSpawnAreaRadius.x, spawnPositionHeight, spawnCentreTransform.position.z + secondRandomPointInCircleOfSpawnAreaRadius.y);
 
             SlammableTarget newTarget = Instantiate(slammableTargetPrefab, secondSpawnPoint, slammableTargetPrefab.transform.rotation);
 
@@ -302,5 +267,12 @@ public class MatchHandler : MonoBehaviour
         int newRandomTargetIndex = Random.Range(0, otherTargetIndexes.Count);
 
         cameraFocuser.SetTransformTwo(activeGameObjects[otherTargetIndexes[newRandomTargetIndex]].transform);
+    }
+
+    private void InitializeNewMatch()
+    {
+        matchEndScreenGameObject.SetActive(false);
+
+        spawnPickupSystem.SpawnDroppedPickups();
     }
 }

@@ -25,11 +25,15 @@ public class SlammableWeapon : MonoBehaviour
 
     private void Start()
     {
-        weaponCollider = GetComponent<Collider>();
+        if(weaponCollider == null)
+        {
+            weaponCollider = GetComponent<Collider>();
+        }
 
-        Physics.IgnoreCollision(hostCollider, weaponCollider);
-
-        weaponCollider.enabled = false;
+        if(hostCollider != null)
+        {
+            Physics.IgnoreCollision(hostCollider, weaponCollider);
+        }
     }
 
     //Registers the events that will invoke the methods of this weapon.
@@ -84,6 +88,8 @@ public class SlammableWeapon : MonoBehaviour
         hostCollider = hostGameObject.GetComponent<Collider>();
 
         attackEvents = hostGameObject.GetComponentInChildren<AttackAnimationEvents>();
+
+        Physics.IgnoreCollision(hostCollider, weaponCollider);
 
         SubscribeAttackExecutorEvents();
     }
